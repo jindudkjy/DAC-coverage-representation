@@ -9,7 +9,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from dac_equilibrium.metrics import pairwise_reversal_table
+from dac_equilibrium.metrics import pairwise_reversal_table, summarize_transition_normalized_scores
 from dac_equilibrium.verification import compare_frames
 from dac_equilibrium.weather_support import (
     cap_subzero_rh_at_ice_saturation,
@@ -19,11 +19,18 @@ from dac_equilibrium.weather_support import (
 )
 
 
-def reproduce_measurement_domain(input_dir: Path, output_dir: Path, atol: float) -> None:
-    weather = pd.read_csv(input_dir / "MAIN_climate_hourly_2015_2024.csv")
-    bounds = pd.read_csv(input_dir / "MAIN_material_support_bounds.csv")
+def reproduce_measurement_domain(
+    input_dir: Path,
+    output_dir: Path,
+    atol: float,
+    weather_file: Path,
+    bounds_file: Path,
+    equilibrium_file: Path,
+) -> None:
+    weather = pd.read_csv(weather_file)
+    bounds = pd.read_csv(bounds_file)
     raw = pd.read_excel(
-        input_dir / "MAIN_equilibrium_dataset_master.xlsx",
+        equilibrium_file,
         sheet_name="06_RAW_QRHT",
         header=2,
     )
@@ -94,20 +101,57 @@ def reproduce_ira_pairs(input_dir: Path, output_dir: Path, atol: float) -> None:
             raise AssertionError("IRA pairwise regression failed")
 
 
+def reproduce_hn(input_dir: Path, output_dir: Path) -> None:
+    source = input_dir / "MAIN_climate_H_scores.csv"
+    panel, by_material, summary = summarize_transition_normalized_scores(pd.read_csv(source))
+    if len(panel) != 2826 or len(by_material) != 108:
+        raise AssertionError(
+            f"Unexpected H/N panel dimensions: {len(panel)} rows, {len(by_material)} groups"
+        )
+    panel.to_csv(output_dir / "MAIN_climate_HN_scores_recomputed.csv", index=False, float_format="%.16g")
+    by_material.to_csv(output_dir / "Table_S6_HN_by_material_recomputed.csv", index=False, float_format="%.16g")
+    summary.to_csv(output_dir / "Table_S6_HN_summary_recomputed.csv", index=False, float_format="%.16g")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--input-dir", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, default=Path("results"))
     parser.add_argument(
         "--target",
-        choices=("all", "coverage", "measurement-domain", "ira-pairs"),
+        choices=("all", "coverage", "measurement-domain", "hn", "ira-pairs"),
         default="all",
+    )
+    root = Path(__file__).resolve().parents[1]
+    parser.add_argument(
+        "--weather-file",
+        type=Path,
+        default=root / "data/weather/MAIN_climate_hourly_2015_2024.csv",
+    )
+    parser.add_argument(
+        "--bounds-file",
+        type=Path,
+        default=root / "data/equilibrium/MAIN_material_support_bounds.csv",
+    )
+    parser.add_argument(
+        "--equilibrium-file",
+        type=Path,
+        default=root / "data/equilibrium/MAIN_equilibrium_dataset_master.xlsx",
     )
     parser.add_argument("--atol", type=float, default=1e-9)
     args = parser.parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
     if args.target in {"all", "coverage", "measurement-domain"}:
-        reproduce_measurement_domain(args.input_dir, args.output_dir, args.atol)
+        reproduce_measurement_domain(
+            args.input_dir,
+            args.output_dir,
+            args.atol,
+            args.weather_file,
+            args.bounds_file,
+            args.equilibrium_file,
+        )
+    if args.target in {"all", "hn"}:
+        reproduce_hn(args.input_dir, args.output_dir)
     if args.target in {"all", "ira-pairs"}:
         reproduce_ira_pairs(args.input_dir, args.output_dir, args.atol)
 

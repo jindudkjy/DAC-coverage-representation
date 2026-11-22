@@ -180,3 +180,125 @@ def pairwise_reversal_table(
     }
     return pd.DataFrame(details), summary
 
+
+
+def partial_kendall_tau(x: np.ndarray, y: np.ndarray, control: np.ndarray) -> float:
+    """Partial Kendall coefficient using the manuscript's three-tau formula."""
+    x = np.asarray(x, dtype=float)
+    y = np.asarray(y, dtype=float)
+    control = np.asarray(control, dtype=float)
+    finite = np.isfinite(x) & np.isfinite(y) & np.isfinite(control)
+    x, y, control = x[finite], y[finite], control[finite]
+    tau_xy = rank_agreement(x, y)["kendall_tau"]
+    tau_xc = rank_agreement(x, control)["kendall_tau"]
+    tau_yc = rank_agreement(y, control)["kendall_tau"]
+    denominator = np.sqrt((1.0 - tau_xc**2) * (1.0 - tau_yc**2))
+    if not denominator or not np.isfinite(denominator):
+        return float("nan")
+    return float((tau_xy - tau_xc * tau_yc) / denominator)
+
+
+def transition_normalized_scores(scores: pd.DataFrame) -> pd.DataFrame:
+    """Validate a location-level H panel and add H/N columns."""
+    required = {
+        "material", "branch", "temporal_mode", "city",
+        "H_single", "H_tensor", "H_RH", "N",
+    }
+    missing = required.difference(scores.columns)
+    if missing:
+        raise ValueError(f"Missing H/N panel columns: {sorted(missing)}")
+    frame = scores.copy()
+    for column in ("H_single", "H_tensor", "H_RH", "N"):
+        frame[column] = pd.to_numeric(frame[column], errors="coerce")
+    if frame[["H_single", "H_tensor", "H_RH", "N"]].isna().any().any():
+        raise ValueError("H/N panel contains non-numeric or missing score values")
+    if (frame["N"] <= 0).any():
+        raise ValueError("Transition count N must be positive")
+    if frame.duplicated(["material", "branch", "temporal_mode", "city"]).any():
+        raise ValueError("H/N panel contains duplicate location keys")
+    frame["H_single_per_transition"] = frame["H_single"] / frame["N"]
+    frame["H_tensor_per_transition"] = frame["H_tensor"] / frame["N"]
+    frame["H_RH_per_transition"] = frame["H_RH"] / frame["N"]
+    return frame
+
+
+def _strict_reversal_fraction(x: np.ndarray, y: np.ndarray) -> tuple[int, int, float]:
+    reversed_pairs = comparable_pairs = 0
+    for left, right in combinations(range(len(x)), 2):
+        dx = np.sign(x[left] - x[right])
+        dy = np.sign(y[left] - y[right])
+        if dx == 0 or dy == 0:
+            continue
+        comparable_pairs += 1
+        reversed_pairs += int(dx != dy)
+    fraction = reversed_pairs / comparable_pairs if comparable_pairs else np.nan
+    return reversed_pairs, comparable_pairs, float(fraction)
+
+
+def summarize_transition_normalized_scores(
+    scores: pd.DataFrame,
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Reproduce the location panel, material statistics, and SI Table S6 medians."""
+    frame = transition_normalized_scores(scores)
+    records: list[dict[str, float | int | str]] = []
+    keys = ["material", "branch", "temporal_mode"]
+    for (material, branch, temporal_mode), group in frame.groupby(keys, sort=True):
+        single = group["H_single"].to_numpy(float)
+        tensor = group["H_tensor"].to_numpy(float)
+        transitions = group["N"].to_numpy(float)
+        single_per_n = group["H_single_per_transition"].to_numpy(float)
+        tensor_per_n = group["H_tensor_per_transition"].to_numpy(float)
+        tau_h = rank_agreement(single, tensor)["kendall_tau"]
+        tau_hn = rank_agreement(single_per_n, tensor_per_n)["kendall_tau"]
+        tau_single_n = rank_agreement(single, transitions)["kendall_tau"]
+        tau_tensor_n = rank_agreement(tensor, transitions)["kendall_tau"]
+        partial = partial_kendall_tau(single, tensor, transitions)
+        n_reversed, n_comparable, reversal_fraction = _strict_reversal_fraction(
+            single_per_n, tensor_per_n
+        )
+        records.append(
+            {
+                "material": material,
+                "branch": branch,
+                "temporal_mode": temporal_mode,
+                "n_locations": len(group),
+                "tau_H_single_tensor": tau_h,
+                "tau_H_over_N_single_tensor": tau_hn,
+                "partial_tau_H_single_tensor_given_N": partial,
+                "tau_H_single_N": tau_single_n,
+                "tau_H_tensor_N": tau_tensor_n,
+                "n_H_over_N_reversed_pairs": n_reversed,
+                "n_H_over_N_comparable_pairs": n_comparable,
+                "H_over_N_reversal_fraction": reversal_fraction,
+            }
+        )
+    by_material = pd.DataFrame(records)
+    summary = (
+        by_material.groupby(["branch", "temporal_mode"], sort=False)
+        .agg(
+            n_materials=("material", "nunique"),
+            median_tau_H_single_tensor=("tau_H_single_tensor", "median"),
+            median_tau_H_over_N_single_tensor=("tau_H_over_N_single_tensor", "median"),
+            median_partial_tau_H_single_tensor_given_N=(
+                "partial_tau_H_single_tensor_given_N", "median"
+            ),
+            median_tau_H_single_N=("tau_H_single_N", "median"),
+            median_tau_H_tensor_N=("tau_H_tensor_N", "median"),
+            median_H_over_N_reversal_fraction=(
+                "H_over_N_reversal_fraction", "median"
+            ),
+        )
+        .reset_index()
+    )
+    temporal_order = {
+        name: index for index, name in enumerate(
+            ["subsample_1h", "subsample_3h", "subsample_6h",
+             "subsample_24h", "average_6h", "average_24h"]
+        )
+    }
+    summary["_branch_order"] = summary["branch"].map({"lower": 0, "upper": 1})
+    summary["_temporal_order"] = summary["temporal_mode"].map(temporal_order)
+    summary = summary.sort_values(["_branch_order", "_temporal_order"]).drop(
+        columns=["_branch_order", "_temporal_order"]
+    ).reset_index(drop=True)
+    return frame, by_material, summary

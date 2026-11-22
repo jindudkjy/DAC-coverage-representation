@@ -45,6 +45,7 @@ DAC-coverage-representation/
 ├── src/dac_equilibrium/
 ├── scripts/
 │   ├── reproduce_tables.py
+│   ├── reproduce_hn_analysis.py
 │   ├── reproduce_figures.py
 │   ├── extract_final_artwork.py
 │   ├── verify_artwork.py
@@ -80,9 +81,10 @@ The principal inputs are:
 
 - `MAIN_climate_hourly_2015_2024.csv` (3,156,192 hourly rows; 36 locations);
 - `MAIN_material_support_bounds.csv`;
+- `MAIN_climate_H_scores.csv` (2,826 location-level H, H/N and N rows);
 - `MAIN_equilibrium_dataset_master.xlsx`;
 - 360 NASA POWER solar-irradiance and wind files used by the PADAC calculation;
-- the ImCOF-TAEA TPD kernel, frozen PADAC configuration and 13X thermal-property object.
+- the ImCOF-TAEA TPD kernel, frozen PADAC configuration and human-readable 13X thermal-property JSON.
 
 Compressed and materialized-file hashes are documented in `data/README.md`,
 `config/data_manifest.csv` and `validation/input_sha256.csv`. Frozen summary
@@ -105,7 +107,18 @@ The coverage target regenerates:
 - immediate RH and cold-boundary state counts;
 - the ice-saturation-capped coverage sensitivity.
 
-The IRA target reconstructs all strict H/Y location-pair classes from saved climate-level scores.
+The H/N target recomputes the 2,826 location-level ratios, all 108 material-panel
+Kendall coefficients, the manuscript partial-Kendall statistic controlling for N, and
+the 12 medians reported in SI Table S6. The IRA target reconstructs all strict H/Y
+location-pair classes from saved climate-level scores.
+
+The H/N calculation can also be run independently:
+
+```bash
+python scripts/reproduce_hn_analysis.py \
+  --input-file data/frozen/MAIN_climate_H_scores.csv \
+  --output-dir results/tables
+```
 
 ## Reproduce numerical figure content
 
@@ -176,6 +189,6 @@ Core H, coverage, IRA Y, whole-range ImCOF H, fixed-80 degC ImCOF Y, and pair cl
 
 ## Citation and license
 
-Citation metadata are provided in `CITATION.cff`. The code is released under the MIT
+Citation metadata are provided in `CITATION.cff` and `.zenodo.json`. The code is released under the MIT
 License; source-data attribution and reuse notes are recorded in `data/README.md` and
 `PROVENANCE.md`. Add the final article DOI to `CITATION.cff` after publication.

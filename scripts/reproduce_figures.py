@@ -9,6 +9,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from dac_equilibrium.metrics import summarize_transition_normalized_scores
 from dac_equilibrium.weather_support import ice_saturation_rh_percent
 
 
@@ -93,9 +94,17 @@ def main() -> None:
     figure.tight_layout()
     save(2, figure, [weather_path.name], "Density map with measured domains and extension bands.")
 
-    # Figure 3: representation effect on H magnitude and ordering.
+    # Figure 3: representation effect on H magnitude, ordering, and H/N.
     data = _read(args.input_dir, "MAIN_magnitude_rank_fidelity_panel_summary")
-    figure, axis = plt.subplots(figsize=(7.5, 4.5))
+    hn_panel = _read(args.input_dir, "MAIN_climate_H_scores")
+    _, _, hn_summary = summarize_transition_normalized_scores(hn_panel)
+    hn_summary.to_csv(
+        args.output_dir / "Fig3b_HN_summary_recomputed.csv",
+        index=False,
+        float_format="%.16g",
+    )
+    figure, axes = plt.subplots(1, 2, figsize=(12.2, 4.5))
+    axis = axes[0]
     for branch, group in data.groupby("branch"):
         axis.scatter(
             group.median_relative_H_error,
@@ -110,10 +119,52 @@ def main() -> None:
     lower_native = data.query("branch == 'lower' and temporal_mode == 'subsample_1h'").iloc[0]
     axis.axvline(lower_native.median_relative_H_error, color="0.5", ls="--", lw=0.8)
     axis.axhline(lower_native.median_kendall_tau, color="0.5", ls="--", lw=0.8)
-    axis.set(xlabel="Median relative H difference", ylabel="Median Kendall tau", title="Figure 3 numerical reconstruction")
+    axis.set(
+        xlabel="Median relative H difference",
+        ylabel="Median Kendall tau",
+        title="(a) H magnitude and ordering",
+    )
     axis.legend()
+
+    temporal_modes = [
+        "subsample_1h", "subsample_3h", "subsample_6h",
+        "subsample_24h", "average_6h", "average_24h",
+    ]
+    labels = ["1 h", "3 h", "6 h", "24 h", "6 h avg", "24 h avg"]
+    positions = np.arange(len(temporal_modes))
+    colors = {"lower": "#1f77b4", "upper": "#d62728"}
+    for branch in ("lower", "upper"):
+        group = hn_summary.query("branch == @branch").set_index("temporal_mode").loc[temporal_modes]
+        axes[1].plot(
+            positions,
+            group["median_tau_H_single_tensor"],
+            marker="o",
+            color=colors[branch],
+            label=f"{branch}: H",
+        )
+        axes[1].plot(
+            positions,
+            group["median_tau_H_over_N_single_tensor"],
+            marker="s",
+            linestyle="--",
+            color=colors[branch],
+            label=f"{branch}: H/N",
+        )
+    axes[1].set_xticks(positions, labels, rotation=30, ha="right")
+    axes[1].set(
+        ylabel="Median Kendall tau",
+        title="(b) Ordering before and after transition normalization",
+        ylim=(0.5, 1.01),
+    )
+    axes[1].legend(fontsize=7, ncol=2)
+    figure.suptitle("Figure 3 numerical reconstruction")
     figure.tight_layout()
-    save(3, figure, ["MAIN_magnitude_rank_fidelity_panel_summary.csv"], "Twelve panel medians.")
+    save(
+        3,
+        figure,
+        ["MAIN_magnitude_rank_fidelity_panel_summary.csv", "MAIN_climate_H_scores.csv"],
+        "Panel (b) is independently recomputed from all 2,826 location-level H and N rows.",
+    )
 
     # Figure 4: correction size and pairwise ordering consequences.
     correction = _read(args.input_dir, "SI_temperature_correction_family_summary")

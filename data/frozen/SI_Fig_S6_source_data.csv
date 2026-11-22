@@ -1,5 +1,4 @@
-material,branch,support_treatment,n_pairs,n_Hsafe_Yrev,n_Hrev_Yrev,tau_Y_single_tensor
-IRA-900-C,lower,original_rep_specific,595,186,1,0.3714285714285714
-IRA-900-C,upper,original_rep_specific,595,146,4,0.495798319327731
-IRA-900-C,lower,common_hour,595,17,6,0.922689075630252
-IRA-900-C,upper,common_hour,595,9,13,0.9260504201680672
+figure,group,material,branch,temperature_extension_gain_pp,upper_RH_extension_gain_pp
+S6,IRA lower,IRA-900-C,lower,6.796558851970561,2.118082883102101
+S6,Al2O3 upper,Al2O3_TEPA(20),upper,6.156761579592391,4.483745416893209
+S6,PEI-30 upper,PEI-30wt,upper,2.521294891634001,7.16605896539968

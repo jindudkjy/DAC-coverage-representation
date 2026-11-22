@@ -6,7 +6,7 @@ authors:
   - family-names: Kang
     given-names: Jin-young
     email: jindud@snu.ac.kr
-affiliation: Seoul National University
+    affiliation: Seoul National University
 repository-code: "https://github.com/jindudkjy/DAC-coverage-representation"
 license: MIT
 date-released: 2026-11-23

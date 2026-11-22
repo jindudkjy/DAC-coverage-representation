@@ -5,9 +5,10 @@ MAIN_equilibrium_dataset_master.xlsx,data/equilibrium/MAIN_equilibrium_dataset_m
 NASA_POWER_solar_wind_2015_2024_36cities.zip,data/archives/NASA_POWER_solar_wind_2015_2024_36cities.zip,360 annual solar irradiance and wind records,PADAC solar regeneration,bundled compressed raw input
 frozen_config.json,data/padac/frozen_config.json,frozen PADAC geometry thermal and operating configuration,PADAC solar regeneration,bundled model input
 ImCOF_TPD_kernel.csv,data/padac/ImCOF_TPD_kernel.csv,ImCOF temperature-programmed-desorption release kernel,PADAC solar regeneration,bundled literature-derived input
-padac_sorbent_13X.pkl.bin,data/padac/padac_sorbent_13X.pkl.bin,reference zeolite 13X thermal properties,PADAC solar regeneration,bundled model input
+padac_sorbent_13X.json,data/padac/padac_sorbent_13X.json,reference zeolite 13X thermal properties,PADAC solar regeneration,bundled human-readable model input
 immediate_boundary_extension_coverage_native1h.csv,data/frozen/immediate_boundary_extension_coverage_native1h.csv,frozen coverage comparator,coverage,optional regression reference
-MAIN_magnitude_rank_fidelity_panel_summary.csv,data/frozen/MAIN_magnitude_rank_fidelity_panel_summary.csv,H magnitude and ordering panel summary,Figure 3,independently audited summary
+MAIN_climate_H_scores.csv,data/frozen/MAIN_climate_H_scores.csv,complete location-level H H/N and N panel,SI Table S6 and Figure 3b,independently regenerated 2826-row panel
+MAIN_magnitude_rank_fidelity_panel_summary.csv,data/frozen/MAIN_magnitude_rank_fidelity_panel_summary.csv,H magnitude and ordering panel summary,Figure 3a,independently audited summary
 SI_temperature_correction_family_summary.csv,data/frozen/SI_temperature_correction_family_summary.csv,pairwise correction family summary,Figure 4,independently audited summary
 MAIN_rh_response_category_counts.csv,data/reference/MAIN_rh_response_category_counts.csv,RH-response category counts,Figure 5,manuscript reference values
 SI_rh_null_classC_bootstrap.csv,data/frozen/SI_rh_null_classC_bootstrap.csv,category-C delta-rho resampling intervals,Figure 5,frozen stochastic summary
@@ -19,5 +20,5 @@ ImCOF_wholeH_wholeY_transfer_summary.csv,data/frozen/ImCOF_wholeH_wholeY_transfe
 SI_added_temperature_held_interior.csv,data/frozen/SI_added_temperature_held_interior.csv,LWT added-temperature summary,SI Figure S3,frozen sensitivity summary
 Mg_LWT_analogue_held_interior_summary.csv,data/frozen/Mg_LWT_analogue_held_interior_summary.csv,MgAl added-temperature summary,SI Figure S3,frozen sensitivity summary
 Mg_LWT_analogue_delta_tau_bootstrap.csv,data/frozen/Mg_LWT_analogue_delta_tau_bootstrap.csv,MgAl added-temperature resampling intervals,SI Figure S3,frozen stochastic summary
-SI_Fig_S5_source_data.csv,data/frozen/SI_Fig_S5_source_data.csv,boundary-extension plot values,SI Figure S6,independently regenerated
-SI_Fig_S6_source_data.csv,data/frozen/SI_Fig_S6_source_data.csv,IRA support pair values,SI Figure S7,independently regenerated
+SI_Fig_S6_source_data.csv,data/frozen/SI_Fig_S6_source_data.csv,boundary-extension plot values,SI Figure S6,independently regenerated
+SI_Fig_S7_source_data.csv,data/frozen/SI_Fig_S7_source_data.csv,IRA support pair values,SI Figure S7,independently regenerated

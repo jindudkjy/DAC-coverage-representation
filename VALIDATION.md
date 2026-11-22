@@ -15,6 +15,7 @@ The full publication-scale PADAC thermal integration remains a separately tracke
 | Calculation | Scope | Maximum discrepancy | Status |
 | --- | ---: | ---: | --- |
 | Equilibrium H panel | 2,826 rows | 4.55e-13 for H; 1.46e-11 for H_RH | pass |
+| H/N and partial-Kendall analysis | 108 material panels; 12 Table S6 medians | exact to displayed precision | pass |
 | Figure 3 panel summary | 12 rows | 3.44e-13 | pass |
 | Native-hour boundary extension | 72 rows | 3.55e-15 percentage points | pass |
 | IRA hourly LDF Y | 140 frozen-cohort rows | 2.27e-13 mmol g-1 | pass |
@@ -36,8 +37,8 @@ The full publication-scale PADAC thermal integration remains a separately tracke
 
 ## Code and figure execution
 
-- Unit tests: 17 passed.
-- Main numerical figure reconstructions: Figures 2-7 generated and visually inspected.
+- Unit tests: the existing suite plus three H/N and partial-Kendall tests.
+- Main numerical figure reconstructions: Figures 2-7 generated and visually inspected; Figure 3b is recomputed from the complete 2,826-row H/N panel.
 - SI numerical figure reconstructions: current Figures S3 and S5-S7 generated from the retained sources.
 - Figure 1 is conceptual artwork and is not treated as a computed output.
 - Latest submission artwork audit: Figures 2-7 and SI Figures S5-S7 were extracted from the embedded DOCX media streams.

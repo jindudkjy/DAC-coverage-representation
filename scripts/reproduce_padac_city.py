@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import pickle
 import time
 from pathlib import Path
 
@@ -87,7 +86,7 @@ def main() -> None:
     parser.add_argument("--equilibrium-file", type=Path, default=ROOT / "data/equilibrium/MAIN_equilibrium_dataset_master.xlsx")
     parser.add_argument("--config", type=Path, default=ROOT / "data/padac/frozen_config.json")
     parser.add_argument("--tpd-kernel", type=Path, default=ROOT / "data/padac/ImCOF_TPD_kernel.csv")
-    parser.add_argument("--sorbent", type=Path, default=ROOT / "data/padac/padac_sorbent_13X.pkl.bin")
+    parser.add_argument("--sorbent", type=Path, default=ROOT / "data/padac/padac_sorbent_13X.json")
     parser.add_argument("--reference-scores", type=Path, default=ROOT / "data/frozen/ImCOF_wholeH_wholeY_aligned_climate_scores.csv")
     parser.add_argument("--output-dir", type=Path, default=ROOT / "results/padac")
     args = parser.parse_args()
@@ -100,7 +99,7 @@ def main() -> None:
     config = json.loads(args.config.read_text(encoding="utf-8"))
     weather = load_weather(args.city, args.weather_file, args.solar_wind_dir, config)
     setting = next(value for value in config["THERMAL_VARIANTS"] if value["id"] == "primary")
-    sorbent = pickle.loads(args.sorbent.read_bytes())
+    sorbent = json.loads(args.sorbent.read_text(encoding="utf-8"))
     parameters = padac_core.padac_params(config, sorbent, setting)
     elapsed = (weather.timestamp - weather.timestamp.iloc[0]).dt.total_seconds().to_numpy(float)
     flow, _ = padac_core.cycle_labels(weather.local, 18, 8)

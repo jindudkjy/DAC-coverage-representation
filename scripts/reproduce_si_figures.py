@@ -38,7 +38,7 @@ def main() -> None:
         manifest.append({"figure": label, "output": filename, "source_files": "; ".join(sources), "note": note})
 
     # Current SI Figure S6: measured-domain boundary-extension gains.
-    s6 = read(args.input_dir, "SI_Fig_S5_source_data.csv")
+    s6 = read(args.input_dir, "SI_Fig_S6_source_data.csv")
     figure, axis = plt.subplots(figsize=(7.2, 4.2))
     positions = np.arange(len(s6))
     width = 0.36
@@ -48,10 +48,10 @@ def main() -> None:
     axis.set(ylabel="Pooled transition-coverage gain (pp)", title="SI Figure S6 numerical reconstruction")
     axis.legend()
     figure.tight_layout()
-    save("S6", figure, ["SI_Fig_S5_source_data.csv"], "Selected independently regenerated boundary-extension values.")
+    save("S6", figure, ["SI_Fig_S6_source_data.csv"], "Selected independently regenerated boundary-extension values.")
 
     # Current SI Figure S7: IRA shared-hour and representation-specific support.
-    s7 = read(args.input_dir, "SI_Fig_S6_source_data.csv")
+    s7 = read(args.input_dir, "SI_Fig_S7_source_data.csv")
     figure, axis = plt.subplots(figsize=(7.2, 4.2))
     s7["label"] = s7.branch + "\n" + s7.support_treatment.str.replace("_", " ")
     positions = np.arange(len(s7))
@@ -59,7 +59,7 @@ def main() -> None:
     axis.set_xticks(positions, s7.label)
     axis.set(ylabel="Fraction with H preserved and Y reversed", title="SI Figure S7 numerical reconstruction")
     figure.tight_layout()
-    save("S7", figure, ["SI_Fig_S6_source_data.csv"], "Shared-hour and representation-specific IRA classifications.")
+    save("S7", figure, ["SI_Fig_S7_source_data.csv"], "Shared-hour and representation-specific IRA classifications.")
 
     # Current SI Figure S3: held-interior added-temperature sensitivity.
     lwt = read(args.input_dir, "SI_added_temperature_held_interior.csv")
