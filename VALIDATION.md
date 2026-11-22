@@ -36,11 +36,13 @@ The full publication-scale PADAC thermal integration remains a separately tracke
 
 ## Code and figure execution
 
-- Unit tests: 15 passed.
+- Unit tests: 17 passed.
 - Main numerical figure reconstructions: Figures 2-7 generated and visually inspected.
 - SI numerical figure reconstructions: Figures S5-S7 generated and visually inspected.
 - Figure 1 is conceptual artwork and is not treated as a computed output.
-- Generated plots validate source values and trends; they are not pixel-identical journal-artwork regressions.
+- Final closed-manuscript artwork: Figures 2-7 and SI Figures S5-S7 re-extracted from the submitted DOCX files.
+- Exact artwork regression: 9/9 files match the canonical PNG byte streams by SHA-256 and have zero differing RGBA pixels.
+- Numerical replots remain separate from the exact-artwork regression because extraction verifies submission fidelity while recalculation verifies scientific values.
 
 ## PADAC split-run status
 
@@ -59,4 +61,5 @@ See `validation/padac_partial/PADAC_STATUS.md` and `batch_status_nz20.csv`. Unti
 - `validation/evidence/`: machine-readable core calculation status.
 - `validation/tables/`: newly regenerated coverage and pairwise outputs.
 - `validation/figures/` and `validation/si_figures/`: executable numerical verification plots.
+- `validation/reference_artwork/`: canonical final PNG artwork, dimensions, source-media mapping, and SHA-256 hashes.
 - `validation/input_sha256.csv`: hashes for the final manuscript, SI, raw inputs, and frozen source tables used in this run.

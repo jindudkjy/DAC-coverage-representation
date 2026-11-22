@@ -2,11 +2,12 @@
 
 This repository is the Python-first reproduction package for the manuscript **Equilibrium Data Coverage and Representation in Weather-Resolved Direct Air Capture Analysis** and its Supporting Information (final closed version, 2026-11-23).
 
-The repository separates three evidence levels:
+The repository separates four evidence levels:
 
 1. calculations regenerated from hourly weather and equilibrium inputs;
 2. regression checks reconstructed from frozen climate-level scores;
-3. source-data verification plots that are not pixel-identical copies of journal artwork.
+3. numerical source-data verification plots;
+4. byte- and pixel-identical preservation of the final closed-manuscript artwork.
 
 ## Main questions reproduced
 
@@ -45,6 +46,8 @@ DAC-coverage-representation/
 ├── scripts/
 │   ├── reproduce_tables.py
 │   ├── reproduce_figures.py
+│   ├── extract_final_artwork.py
+│   ├── verify_artwork.py
 │   └── verify_frozen.py
 ├── notebooks/reproduce_manuscript.ipynb
 ├── tests/
@@ -105,7 +108,26 @@ python scripts/reproduce_si_figures.py \
   --output-dir results/si_figures
 ```
 
-These commands create numerical verification plots for final manuscript Figures 2-7 and SI Figures S5-S7. Figure 1 is a conceptual analysis diagram and is not a numerical output. The generated plots preserve source values and trends but do not claim pixel-identical typography, annotation placement, or panel styling.
+These commands create numerical verification plots for final manuscript Figures 2-7 and SI Figures S5-S7. Figure 1 is a conceptual analysis diagram and is not a numerical output. Numerical plots are deliberately kept separate from the final closed-manuscript artwork.
+
+## Preserve and verify the final artwork exactly
+
+The canonical PNG byte streams embedded in the final closed DOCX files are retained in
+`validation/reference_artwork`. Re-extract them from the submitted documents and require
+both SHA-256 and every RGBA pixel to match:
+
+```bash
+python scripts/extract_final_artwork.py \
+  --manuscript Manuscript_Coverage_Representation_DAC_final_closed_20261123.docx \
+  --supporting-information Supporting_Information_Coverage_Representation_DAC_final_20261123.docx \
+  --output-dir results/final_artwork
+
+python scripts/verify_artwork.py \
+  --candidate-dir results/final_artwork
+```
+
+This is an exact artwork-preservation check, not a substitute for scientific recalculation.
+The independent calculation path remains the table and numerical-figure workflow above.
 
 ## Test and verify
 
