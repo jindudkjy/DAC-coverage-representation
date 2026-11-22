@@ -40,9 +40,9 @@ The full publication-scale PADAC thermal integration remains a separately tracke
 - Main numerical figure reconstructions: Figures 2-7 generated and visually inspected.
 - SI numerical figure reconstructions: current Figures S3 and S5-S7 generated from the retained sources.
 - Figure 1 is conceptual artwork and is not treated as a computed output.
-- Latest submission artwork audit: Figures 2-7 and SI Figures S5-S7 were mapped to the embedded DOCX media streams.
-- Artwork continuity: 8/9 tracked PNG streams match the preceding reference by uncompressed size and ZIP CRC-32; Figure 3 changed.
-- The preceding submission baseline passed the 9/9 SHA-256 and zero-differing-RGBA-pixel regression. The latest submission is not labeled 9/9 exact until the Figure 3 reference PNG is refreshed and the pixel regression is rerun.
+- Latest submission artwork audit: Figures 2-7 and SI Figures S5-S7 were extracted from the embedded DOCX media streams.
+- Figure 3 was refreshed from manuscript `20261123j`; the other eight tracked PNG streams were unchanged.
+- Exact artwork regression: 9/9 latest-submission PNG streams match the canonical references by SHA-256. Byte identity implies zero differing decoded pixels.
 - Numerical replots remain separate from the exact-artwork regression because extraction verifies submission fidelity while recalculation verifies scientific values.
 
 ## PADAC split-run status
