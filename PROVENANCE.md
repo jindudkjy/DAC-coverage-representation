@@ -2,7 +2,7 @@
 
 ## Source assets
 
-- Submission manuscript `Manuscript_Coverage_Representation_DAC_submission_20261123e.docx` and Supporting Information `Supporting_Information_Coverage_Representation_DAC_final_20261123c.docx`.
+- Submission manuscript `Manuscript_Coverage_Representation_DAC_submission_20261123j.docx`, Supporting Information `Supporting_Information_Coverage_Representation_DAC_final_20261123g.docx`, cover letter `Cover_Letter_Coverage_Representation_DAC_submission_20261123l.docx`, and highlights `Highlights_Coverage_Representation_DAC_submission_20261123d.docx`.
 - Google Drive analysis-code archive `02_analysis_code`.
 - Google Drive reproduction-code and output archive `08_reproduction_code_and_outputs`.
 - Frozen reproducibility package dated 2026-11-19.
@@ -21,7 +21,7 @@ Version 1.0 provides the self-contained coverage-centered execution path:
 - explicit distinction between source-data replots and final artwork;
 - bundled canonical hourly temperature/RH and solar/wind forcing;
 - portable, restartable PADAC city and all-city runners;
-- exact-artwork hashes from the current submission files.
+- exact-artwork hashes from the preceding submission baseline; the latest submission preserves 8/9 tracked PNG streams by size and CRC-32, while Figure 3 requires a refreshed reference.
 
 ## Regeneration levels
 
