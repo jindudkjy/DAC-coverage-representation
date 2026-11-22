@@ -1,0 +1,503 @@
+{
+  "VERSION": "v1.6.4-primary-first-PADAC",
+  "FROZEN_AT": "2026-11-15T18:40:07",
+  "REPO_ROOT": "/content/drive/MyDrive",
+  "RESUME_RUN_DIR": null,
+  "SEARCH_ROOTS": [
+    "/content/drive/MyDrive",
+    "/content/drive/Shareddrives",
+    "/content/drive/Othercomputers"
+  ],
+  "AUDIT_FILENAME": "process_dataset_9_materials_exhaustive_audit.xlsx",
+  "AUDIT_DRIVE_ID": "1_hDXMRxNa1Wuv9ayWsTWwnrPsJ6n0klL",
+  "EQ_MASTER_FILENAME": "MAIN_equilibrium_dataset_master.xlsx",
+  "EQ_MASTER_PATH": "/content/drive/MyDrive/climate_screening_v1_3_1_uncertainty_audit/climate_screening_backbone/recent_experimental_results/manuscript_required_outputs_only/results/SI_machine_readable_supporting_data/MAIN_equilibrium_dataset_master.xlsx",
+  "EQ_MASTER_DRIVE_ID": null,
+  "P0_CODE_PATH": "/content/drive/MyDrive/codes/CODE_P0_tensor_reproduction_v4_regression_repair.ipynb",
+  "P0_OUTPUTS_DIR": "/content/drive/MyDrive/climate_screening_v1_3_1_uncertainty_audit/climate_screening_backbone/recent_experimental_results/manuscript_required_outputs_only/results/P0_submission_gate_outputs_2026-10-14/P0_tensor_outputs",
+  "WEATHER_PATH": "/content/drive/MyDrive/climate_screening_v1_3_1_uncertainty_audit/climate_screening_backbone/recent_experimental_results/manuscript_required_outputs_only/results/SI_machine_readable_supporting_data/MAIN_climate_hourly_2015_2024.csv",
+  "SOLAR_WIND_PATH": null,
+  "NASA_POWER_AUTO_DOWNLOAD": true,
+  "NASA_POWER_API_BASE": "https://power.larc.nasa.gov/api/temporal/hourly/point",
+  "NASA_POWER_PARAMETERS": [
+    "ALLSKY_SFC_SW_DWN",
+    "WS10M"
+  ],
+  "NASA_POWER_COMMUNITY": "RE",
+  "NASA_POWER_CACHE_DIR": "/content/drive/MyDrive/climate_screening_v1_3_1_uncertainty_audit/climate_screening_backbone/recent_experimental_results/manuscript_required_outputs_only/results/NASA_POWER_G_v_2015_2024",
+  "NASA_POWER_MERGED_PATH": "/content/drive/MyDrive/climate_screening_v1_3_1_uncertainty_audit/climate_screening_backbone/recent_experimental_results/manuscript_required_outputs_only/results/NASA_POWER_G_v_2015_2024/NASA_POWER_36city_G_v_2015_2024.csv",
+  "NASA_POWER_FORCE_REDOWNLOAD": false,
+  "NASA_POWER_TIMEOUT_S": 180,
+  "NASA_POWER_MAX_RETRIES": 4,
+  "WEATHER_TIMESTAMPS_ARE_LOCAL": false,
+  "WEATHER_UTC_OFFSET_H": null,
+  "WEATHER_CITY_TIMEZONES": {
+    "adelaide": "Australia/Adelaide",
+    "amsterdam": "Europe/Amsterdam",
+    "athens": "Europe/Athens",
+    "auckland": "Pacific/Auckland",
+    "beijing": "Asia/Shanghai",
+    "belem": "America/Belem",
+    "dalian": "Asia/Shanghai",
+    "doha": "Asia/Qatar",
+    "dubai": "Asia/Dubai",
+    "dublin": "Europe/Dublin",
+    "harbin": "Asia/Shanghai",
+    "helsinki": "Europe/Helsinki",
+    "jakarta": "Asia/Jakarta",
+    "jeddah": "Asia/Riyadh",
+    "kuala_lumpur": "Asia/Kuala_Lumpur",
+    "las_vegas": "America/Los_Angeles",
+    "lisbon": "Europe/Lisbon",
+    "london": "Europe/London",
+    "madrid": "Europe/Madrid",
+    "manaus": "America/Manaus",
+    "medan": "Asia/Jakarta",
+    "minneapolis": "America/Chicago",
+    "montreal": "America/Toronto",
+    "moscow": "Europe/Moscow",
+    "ottawa": "America/Toronto",
+    "paris": "Europe/Paris",
+    "phoenix": "America/Phoenix",
+    "pyongyang": "Asia/Pyongyang",
+    "riyadh": "Asia/Riyadh",
+    "rome": "Europe/Rome",
+    "sacramento": "America/Los_Angeles",
+    "seoul": "Asia/Seoul",
+    "shenyang": "Asia/Shanghai",
+    "singapore": "Asia/Singapore",
+    "vancouver": "America/Vancouver",
+    "warsaw": "Europe/Warsaw"
+  },
+  "WEATHER_PROVENANCE": "DIRECT_REPORTED_MEASURED",
+  "IRA_KERNEL_PROVENANCE": "DIGITIZED_FROM_FIGURE",
+  "BRIDGE_DIR_PATH": "/content/drive/MyDrive/climate_screening_v1_3_1_uncertainty_audit/climate_screening_backbone/process_bridge/results/three_material_cycle_productivity_bridge",
+  "BRIDGE_FINAL_DIR_PATH": "/content/drive/MyDrive/climate_screening_v1_3_1_uncertainty_audit/climate_screening_backbone/process_bridge/results/three_material_cycle_productivity_bridge_final",
+  "IRA_CONTINUOUS_CODE_PATH": "/content/drive/MyDrive/codes/IRA_continuous_weather_process_bridge_v7.ipynb",
+  "TPD_PASS_CURVES_PATH": "/content/drive/MyDrive/thermal_process_highres_QA_pass_curves_2026-11-13.csv",
+  "TPD_QA_MANIFEST_PATH": "/content/drive/MyDrive/thermal_process_highres_QA_manifest_2026-11-13.csv",
+  "P0_BINDINGS": {
+    "build_representations": [
+      "eval_single",
+      "eval_tensor"
+    ],
+    "regression_targets": [
+      "trajectory_scores",
+      "regression_compare"
+    ],
+    "weather_loader": []
+  },
+  "BRIDGE_BINDINGS": {
+    "active_cycle_scores": [
+      "optimized_productivity_climate_scores.csv"
+    ],
+    "continuous_kinetics": [
+      "propagate_city"
+    ],
+    "score_column": null
+  },
+  "FULL_REPRESENTATION_NAME": "tensor",
+  "MATERIALS": {
+    "IRA": "IRA-900-C",
+    "ImCOF": "ImCOF-TAEA"
+  },
+  "WEATHER_COLUMNS": {
+    "climate": null,
+    "timestamp": null,
+    "T_C": null,
+    "RH_pct": null,
+    "G_Wm2": null,
+    "v_ms": null
+  },
+  "IRA_KERNEL_COLUMNS": {
+    "time": null,
+    "fraction": null
+  },
+  "IRA_KERNEL_TIME_UNIT": null,
+  "IRA_MEASURED_RH_LEVELS": null,
+  "TPD_COLUMNS": {
+    "curve_id": null,
+    "T_C": null,
+    "time_min": null,
+    "signal": null,
+    "T_ads_C": null,
+    "RH_ads_pct": null,
+    "heating_rate": null,
+    "adsorbed_amount": null
+  },
+  "TPD_SIGNAL_KIND": "concentration",
+  "PADAC_PDF_PATH": null,
+  "IMCOF_PDF_PATHS": null,
+  "PADAC_FIELD_FORCING_PATH": null,
+  "PADAC_FIELD_FORCING_PROVENANCE": null,
+  "PADAC_FIELD_TARGET_PROVENANCE": null,
+  "PADAC_FIELD_SAME_FIGURE": null,
+  "N_JOBS": 2,
+  "RUN_PADAC_THERMAL_SENSITIVITY": false,
+  "N_CLIMATES_EXPECTED": 36,
+  "CLIMATE_ORDER": null,
+  "P0_REGRESSION_RTOL": 1e-06,
+  "P0_REGRESSION_ATOL": 1e-09,
+  "BRIDGE_REGRESSION_RTOL": 0.0001,
+  "EXTRAPOLATION_POLICY": "P0_RULE",
+  "IRA_ENV_PRIMARY_ENDPOINT": "continuous_weather_process_endpoint",
+  "IRA_KINETICS_PRIMARY": "repository_continuous_v7",
+  "IRA_DWELL_FROM_KERNEL_FRACTIONS": [],
+  "ADSORPTION_WINDOW_LOCAL_H": [
+    18,
+    8
+  ],
+  "ADSORPTION_WINDOW_SENSITIVITY": [
+    [
+      20,
+      8
+    ]
+  ],
+  "IMCOF_ADS_CONDITION": "end_of_window",
+  "TPD_PRIMARY_HEATING_RATE": 0.5,
+  "TPD_HEATING_RATE_TOL": 0.05,
+  "TPD_BASELINE": "linear_endpoints",
+  "TPD_NORMALIZATION": "adsorbed_amount_if_available",
+  "TPD_KERNEL_SELECTION": "nearest_measured_condition",
+  "TPD_RH_SCALE_PCT": 10.0,
+  "TPD_T_SCALE_C": 10.0,
+  "IMCOF_ACTIVE": {
+    "T_reg_C": 80.0,
+    "duration_h": 2.0,
+    "N2_sccm": 60.0
+  },
+  "IMCOF_SUPPORT": {
+    "T_C": [
+      -20.0,
+      25.0
+    ],
+    "RH_pct": [
+      0.0,
+      70.0
+    ]
+  },
+  "PADAC_NZ": 20,
+  "IMCOF_ENV_THERMAL_MODE": "padac_13X_controller",
+  "PADAC_CONTROLLER_CACHE_DIR": null,
+  "PADAC_SOLVER_MODE": "optimized_if_regression_passes",
+  "PADAC_OPT_CHUNK_HOURS": 744,
+  "PADAC_OPT_MAX_STEP_S": null,
+  "PADAC_OPT_VALIDATION_DAYS": 7,
+  "PADAC_OPT_VALIDATION_N_CLIMATES": 3,
+  "PADAC_OPT_MAX_ABS_T_C": 0.05,
+  "PADAC_OPT_RMSE_T_C": 0.01,
+  "PADAC": {
+    "L": [
+      0.35,
+      "m",
+      "DIRECT_REPORTED_DESIGN",
+      "reactor"
+    ],
+    "D_int": [
+      0.1,
+      "m",
+      "DIRECT_REPORTED_DESIGN",
+      "reactor"
+    ],
+    "D_ext": [
+      0.1015,
+      "m",
+      "DIRECT_REPORTED_DESIGN",
+      "reactor"
+    ],
+    "e_v": [
+      0.008,
+      "m",
+      "DIRECT_REPORTED_DESIGN",
+      "reactor"
+    ],
+    "e_w": [
+      0.002,
+      "m",
+      "DIRECT_REPORTED_DESIGN",
+      "reactor"
+    ],
+    "tilt_deg": [
+      30.0,
+      "deg",
+      "DIRECT_REPORTED_DESIGN",
+      "reactor"
+    ],
+    "m_s_13X": [
+      1.5,
+      "kg",
+      "DIRECT_REPORTED_DESIGN",
+      "sorbent"
+    ],
+    "Q_m3_h": [
+      12.0,
+      "m3/h",
+      "DIRECT_REPORTED_DESIGN",
+      "reactor"
+    ],
+    "alpha_v": [
+      0.06,
+      "-",
+      "LITERATURE_PARAMETER",
+      "reactor"
+    ],
+    "eps_v": [
+      0.9,
+      "-",
+      "LITERATURE_PARAMETER",
+      "reactor"
+    ],
+    "tau_g": [
+      0.95,
+      "-",
+      "LITERATURE_PARAMETER",
+      "reactor"
+    ],
+    "alpha_w": [
+      0.9,
+      "-",
+      "LITERATURE_PARAMETER",
+      "reactor"
+    ],
+    "eps_w": [
+      0.9,
+      "-",
+      "LITERATURE_PARAMETER",
+      "reactor"
+    ],
+    "sky_coeff": [
+      0.0522,
+      "K^-0.5",
+      "LITERATURE_PARAMETER",
+      "reactor"
+    ],
+    "h_wind_table3": [
+      23.8,
+      "W/m2/K",
+      "FITTED_BY_SOURCE_AUTHORS",
+      "reactor"
+    ],
+    "h_w_fitted": [
+      1.83,
+      "W/m2/K",
+      "FITTED_BY_SOURCE_AUTHORS",
+      "reactor"
+    ],
+    "lambda_gz_fitted": [
+      0.11,
+      "W/m/K",
+      "FITTED_BY_SOURCE_AUTHORS",
+      "reactor"
+    ],
+    "h_gs_13X": [
+      148.61,
+      "W/m2/K",
+      "FITTED_BY_SOURCE_AUTHORS",
+      "sorbent"
+    ],
+    "C_s_13X": [
+      880.0,
+      "J/kg/K",
+      "DIRECT_REPORTED_MEASURED",
+      "sorbent"
+    ],
+    "alpha_s_13X": [
+      1.6e-07,
+      "m2/s",
+      "DIRECT_REPORTED_MEASURED",
+      "sorbent"
+    ],
+    "minus_dH_13X": [
+      32682.0,
+      "J/mol",
+      "FITTED_BY_SOURCE_AUTHORS",
+      "sorbent"
+    ],
+    "rho_v": [
+      2230.0,
+      "kg/m3",
+      "ASSUMED_SENSITIVITY_PARAMETER",
+      "reactor"
+    ],
+    "C_v": [
+      750.0,
+      "J/kg/K",
+      "ASSUMED_SENSITIVITY_PARAMETER",
+      "reactor"
+    ],
+    "rho_w": [
+      7900.0,
+      "kg/m3",
+      "ASSUMED_SENSITIVITY_PARAMETER",
+      "reactor"
+    ],
+    "C_w": [
+      500.0,
+      "J/kg/K",
+      "ASSUMED_SENSITIVITY_PARAMETER",
+      "reactor"
+    ],
+    "eps_bed_13X": [
+      0.4,
+      "-",
+      "ASSUMED_SENSITIVITY_PARAMETER",
+      "sorbent"
+    ],
+    "d_p_13X": [
+      0.003,
+      "m",
+      "ASSUMED_SENSITIVITY_PARAMETER",
+      "sorbent"
+    ],
+    "rho_p_13X": [
+      1100.0,
+      "kg/m3",
+      "ASSUMED_SENSITIVITY_PARAMETER",
+      "sorbent"
+    ]
+  },
+  "PADAC_FORM": {
+    "a_v": "1/e_v",
+    "wall_solar_factor": "D_ext/(np.pi*(D_ext**2-D_int**2)/4)",
+    "wall_rad_factor": "np.pi*D_ext/(np.pi*(D_ext**2-D_int**2)/4)",
+    "wall_gas_factor": "np.pi*D_int/(np.pi*(D_ext**2-D_int**2)/4)",
+    "gas_wall_factor": "4/D_int",
+    "wind_correlation": "watmuff",
+    "coefficient_mode": "table3_fitted",
+    "eq6_glass_wall_sign": "physical",
+    "gas_solid_sign_factor": 1.0
+  },
+  "PADAC_PDF_VERIFIED": {
+    "eq6": false,
+    "eq7": false,
+    "eq8": false,
+    "eq9": false,
+    "eq10": false,
+    "eq11": false,
+    "eq12": false,
+    "eq13": false,
+    "eq14": false,
+    "eq15": false,
+    "bc": false,
+    "eq16": false,
+    "eq17_20": false
+  },
+  "TOTH_13X": {
+    "minus_dH": 32682.0,
+    "q_m0": 7.88,
+    "K0": 115.853,
+    "n0": 0.35,
+    "gamma": -2.34,
+    "beta": -0.72,
+    "T0": null,
+    "k_L": null,
+    "isotherm_form": null,
+    "q_m_form": null,
+    "K_form": null,
+    "n_form": null
+  },
+  "THERMAL_VARIANTS": [
+    {
+      "id": "primary",
+      "wind_correlation": "watmuff",
+      "sky_coeff": null,
+      "coefficient_mode": "table3_fitted",
+      "formulation": "B"
+    },
+    {
+      "id": "wind_kumar",
+      "wind_correlation": "kumar",
+      "sky_coeff": null,
+      "coefficient_mode": "table3_fitted",
+      "formulation": "B"
+    },
+    {
+      "id": "wind_mcadams_le5",
+      "wind_correlation": "mcadams_low",
+      "sky_coeff": null,
+      "coefficient_mode": "table3_fitted",
+      "formulation": "B"
+    },
+    {
+      "id": "sky_0.0552",
+      "wind_correlation": "watmuff",
+      "sky_coeff": 0.0552,
+      "coefficient_mode": "table3_fitted",
+      "formulation": "B"
+    },
+    {
+      "id": "coeff_correlation",
+      "wind_correlation": "watmuff",
+      "sky_coeff": null,
+      "coefficient_mode": "correlation",
+      "formulation": "B"
+    },
+    {
+      "id": "formulation_A",
+      "wind_correlation": "watmuff",
+      "sky_coeff": null,
+      "coefficient_mode": "table3_fitted",
+      "formulation": "A"
+    }
+  ],
+  "WIND_VALIDITY_MS": {
+    "watmuff": [
+      0,
+      7
+    ],
+    "kumar": [
+      0,
+      4
+    ],
+    "mcadams_low": [
+      0,
+      5
+    ],
+    "table3_constant": [
+      0,
+      1000000000.0
+    ]
+  },
+  "IMCOF_THERMAL_PROPS": {
+    "C_s": null,
+    "rho_bulk": null,
+    "rho_p": null,
+    "eps_bed": null,
+    "k_s": null,
+    "alpha_s": null,
+    "d_p": null,
+    "dH_ads": null
+  },
+  "IMCOF_THERMAL_THETA": null,
+  "IMCOF_TPD_ED": {
+    "dry_25C": 77.9,
+    "RH70_25C": 94.8
+  },
+  "IMCOF_ANCHORS": {
+    "T25": {
+      "RH0": [
+        0.46,
+        0.02
+      ],
+      "RH30": [
+        0.53,
+        0.07
+      ],
+      "RH50": [
+        0.76,
+        0.03
+      ],
+      "RH70": [
+        1.09,
+        0.06
+      ]
+    },
+    "RH70": {
+      "Tm20": 0.11,
+      "Tm5": 1.03,
+      "T5": 1.12,
+      "T15": 1.25,
+      "T25": 1.09
+    }
+  }
+}

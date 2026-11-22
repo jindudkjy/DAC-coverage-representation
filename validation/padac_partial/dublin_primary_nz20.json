@@ -1,0 +1,17 @@
+{
+  "city": "dublin",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3632,
+  "supported_cycles": 1,
+  "Y_single": 0.688062624590677,
+  "Y_tensor": 0.7604871521635117,
+  "peak_Ts_C": 63.7865411508714,
+  "solver_seconds": 1695.4850000000442,
+  "reference_available": true,
+  "Y_single_reference": 0.6880985631121,
+  "Y_tensor_reference": 0.760526873524378,
+  "Y_single_error": -3.5938521423029e-05,
+  "Y_tensor_error": -3.972136086627387e-05,
+  "supported_cycles_reference": 1
+}

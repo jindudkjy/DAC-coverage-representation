@@ -65,17 +65,29 @@ python -m pip install --upgrade pip
 python -m pip install -e ".[dev]"
 ```
 
-## Required data
+## Materialize the bundled data
 
-Large hourly weather and source-controlled scientific inputs are not duplicated in Git. Obtain them from the archived manuscript reproducibility package, verify their SHA-256 values, and place them as described in `data/README.md` and `config/data_manifest.csv`.
+The repository contains the complete compressed weather, equilibrium, frozen-summary,
+solar/wind and PADAC parameter inputs needed by the public scripts. No private Drive
+folder or unpublished archive is required. After cloning, materialize the compressed
+weather archives:
 
-The principal raw inputs are:
+```bash
+python scripts/materialize_data.py
+```
+
+The principal inputs are:
 
 - `MAIN_climate_hourly_2015_2024.csv` (3,156,192 hourly rows; 36 locations);
 - `MAIN_material_support_bounds.csv`;
-- `MAIN_equilibrium_dataset_master.xlsx`.
+- `MAIN_equilibrium_dataset_master.xlsx`;
+- 360 NASA POWER solar-irradiance and wind files used by the PADAC calculation;
+- the ImCOF-TAEA TPD kernel, frozen PADAC configuration and 13X thermal-property object.
 
-Frozen summary tables are retained only where a full calculation starts from a validated intermediate. Each such case is labeled in the manifest and output metadata.
+Compressed and materialized-file hashes are documented in `data/README.md`,
+`config/data_manifest.csv` and `validation/input_sha256.csv`. Frozen summary
+tables are retained only where a calculation starts from a validated intermediate, and
+each case is labeled in the manifest and output metadata.
 
 ## Reproduce tables
 
@@ -108,7 +120,22 @@ python scripts/reproduce_si_figures.py \
   --output-dir results/si_figures
 ```
 
-These commands create numerical verification plots for final manuscript Figures 2-7 and SI Figures S5-S7. Figure 1 is a conceptual analysis diagram and is not a numerical output. Numerical plots are deliberately kept separate from the final closed-manuscript artwork.
+These commands create numerical verification plots for final manuscript Figures 2-7 and current SI Figures S3 and S5-S7. Figure 1 is a conceptual analysis diagram and is not a numerical output. Numerical plots are deliberately kept separate from the final submission artwork.
+
+## Reproduce the PADAC solar-regeneration calculation
+
+The publication-scale PADAC calculation is restartable by city. It uses two workers by
+default because each `nz=20` city integration is memory- and CPU-intensive:
+
+```bash
+python scripts/reproduce_padac_all.py --workers 2 --nz 20
+python scripts/verify_padac_solar.py
+```
+
+Individual cities can be run with `scripts/reproduce_padac_city.py CITY --nz 20`.
+The final verifier requires all 36 city JSON files, retains the 30 evaluable modeled
+locations, reconstructs all 435 strict location pairs, and tests the manuscript's
+solar-regeneration result of 13 Y-only reversals and zero joint H/Y reversals.
 
 ## Preserve and verify the final artwork exactly
 
@@ -118,8 +145,8 @@ both SHA-256 and every RGBA pixel to match:
 
 ```bash
 python scripts/extract_final_artwork.py \
-  --manuscript Manuscript_Coverage_Representation_DAC_final_closed_20261123.docx \
-  --supporting-information Supporting_Information_Coverage_Representation_DAC_final_20261123.docx \
+  --manuscript Manuscript_Coverage_Representation_DAC_submission_20261123e.docx \
+  --supporting-information Supporting_Information_Coverage_Representation_DAC_final_20261123c.docx \
   --output-dir results/final_artwork
 
 python scripts/verify_artwork.py \
@@ -144,4 +171,6 @@ Core H, coverage, IRA Y, whole-range ImCOF H, fixed-80 degC ImCOF Y, and pair cl
 
 ## Citation and license
 
-Add the final article citation and repository DOI after publication. No software license has been selected; the repository owner should add the intended license before third-party reuse.
+Citation metadata are provided in `CITATION.cff`. The code is released under the MIT
+License; source-data attribution and reuse notes are recorded in `data/README.md` and
+`PROVENANCE.md`. Add the final article DOI to `CITATION.cff` after publication.

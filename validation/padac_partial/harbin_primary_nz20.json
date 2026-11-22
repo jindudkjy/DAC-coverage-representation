@@ -1,0 +1,17 @@
+{
+  "city": "harbin",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3652,
+  "supported_cycles": 963,
+  "Y_single": 0.5315810249863416,
+  "Y_tensor": 0.535848422763157,
+  "peak_Ts_C": 74.08872718831796,
+  "solver_seconds": 1949.8589999999967,
+  "reference_available": true,
+  "Y_single_reference": 0.5315850035917046,
+  "Y_tensor_reference": 0.5358526991946375,
+  "Y_single_error": -3.978605362942034e-06,
+  "Y_tensor_error": -4.27643148048773e-06,
+  "supported_cycles_reference": 963
+}

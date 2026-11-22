@@ -1,14 +1,19 @@
-# Data placement and integrity
+# Data placement integrity and reuse
 
-Large scientific inputs are not committed to Git. Preserve the canonical filenames and do not edit source files in place.
+The repository is self-contained. Run `python scripts/materialize_data.py` after cloning.
+It expands the bundled archives without modifying their canonical contents.
 
-Use these locations:
+- `data/archives/MAIN_climate_hourly_2015_2024.csv.gz` contains the canonical 36-location temperature/RH record. The materialized CSV has 249,118,498 bytes and SHA-256 `e69557396811e1a82264e41b1932e91c4cc06332bb00dcaa20232248e8618124`.
+- `data/archives/NASA_POWER_solar_wind_2015_2024_36cities.zip` contains 360 annual solar-irradiance and wind files for the PADAC calculation.
+- `data/equilibrium/` contains the equilibrium master workbook and material-support bounds.
+- `data/frozen/` contains validated regression comparators and stochastic or climate-level summaries used as explicitly labeled intermediates.
+- `data/padac/` contains the frozen PADAC configuration, ImCOF-TAEA TPD release kernel and serialized 13X thermal-property object.
+- `data/reference/` contains small manuscript-level reference values.
 
-- `data/weather/`: `MAIN_climate_hourly_2015_2024.csv`;
-- `data/equilibrium/`: equilibrium master workbook and material bounds;
-- `data/frozen/`: validated regression comparators and summary tables;
-- `data/reference/`: small manuscript-level reference values committed with the code.
+NASA POWER meteorological data are redistributed with source attribution to the NASA
+Langley Research Center POWER project. Equilibrium and TPD values retain the literature
+provenance recorded in `PROVENANCE.md`; the repository's MIT license applies to software
+and does not replace the terms of the cited source publications.
 
-For the simple command lines in the root README, links or copies may be placed together in `data/frozen/`. The complete inventory and regeneration level are in `config/data_manifest.csv`.
-
-Before a full run, compare input SHA-256 values against `validation/input_sha256.csv`. The reproduction commands never overwrite canonical inputs.
+Before a full run, compare input hashes against `validation/input_sha256.csv` and the
+archive manifest. Reproduction commands write only to `results/`.

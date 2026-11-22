@@ -1,11 +1,13 @@
-# PADAC publication-scale rerun checkpoint
+# PADAC publication-scale rerun status
 
-Checkpoint date: 2026-11-23
+Snapshot date: 2026-11-23
 
-The full 10-year, 36-city, `nz=20` thermal integration is computationally expensive and is executed as restartable city jobs.
+The restartable 2015-2024, 36-city, `nz=20` PADAC thermal integration has
+`14` completed or recovered city result files. Supported-cycle counts match
+the frozen reference in `14/14` completed cities. The maximum finite absolute
+city-level Y discrepancy is `0.00006294726158539987` mmol g-1.
 
-At this checkpoint, Adelaide, Amsterdam, Athens, Auckland, Beijing, Belem, Dalian and Helsinki have result JSON files. Their supported-cycle counts match the frozen reference exactly. The largest finite Y discrepancy among these cities is 2.57e-5 mmol g-1.
-
-The original six-worker batch recorded a failed Dubai subprocess and stopped before closing the full panel. A two-worker resume was started to reduce memory pressure. Completed JSON files are detected and skipped automatically.
-
-The frozen PADAC location-pair table can reproduce the manuscript's pair-classification summary, but it is not a substitute for completing every city-level thermal integration. This directory is therefore labeled `padac_partial`.
+The final solar-regeneration claim (13 Y-only reversals among 435 eligible location
+pairs) is not marked independently reproduced until all 36 city jobs finish and
+`scripts/verify_padac_solar.py` passes. The run is restartable and skips every existing
+city JSON.

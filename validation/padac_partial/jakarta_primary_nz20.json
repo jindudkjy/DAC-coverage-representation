@@ -1,0 +1,17 @@
+{
+  "city": "jakarta",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3652,
+  "supported_cycles": 1,
+  "Y_single": 1.0070548647077828,
+  "Y_tensor": 0.973806894971989,
+  "peak_Ts_C": 74.0542731502677,
+  "solver_seconds": 2556.0470000000205,
+  "reference_available": true,
+  "Y_single_reference": 1.0069919174461974,
+  "Y_tensor_reference": 0.9737460259175812,
+  "Y_single_error": 6.294726158539987e-05,
+  "Y_tensor_error": 6.0869054407830525e-05,
+  "supported_cycles_reference": 1
+}

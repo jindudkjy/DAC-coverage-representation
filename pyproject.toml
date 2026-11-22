@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dac-coverage-representation"
-version = "0.2.0"
+version = "1.0.0"
 description = "Reproduction code for measured-domain coverage and equilibrium representation in weather-resolved DAC analysis"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -15,6 +15,7 @@ dependencies = [
   "matplotlib>=3.8,<4",
   "pillow>=10,<13",
   "openpyxl>=3.1,<4",
+  "tzdata>=2024.1",
 ]
 
 [project.optional-dependencies]

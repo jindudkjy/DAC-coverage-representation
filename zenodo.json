@@ -1,0 +1,25 @@
+{
+  "title": "Equilibrium Data Coverage and Representation in Weather-Resolved DAC Analysis",
+  "description": "Self-contained Python reproduction package and bundled inputs for the associated direct-air-capture manuscript.",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Kang, Jin-young",
+      "affiliation": "Seoul National University"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "direct air capture",
+    "adsorption equilibrium",
+    "weather-resolved analysis",
+    "reproducibility"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/jindudkjy/DAC-coverage-representation",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

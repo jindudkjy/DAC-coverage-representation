@@ -1,0 +1,17 @@
+{
+  "city": "dubai",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3652,
+  "supported_cycles": 756,
+  "Y_single": 0.5536943678971334,
+  "Y_tensor": 0.5507677416910725,
+  "peak_Ts_C": 81.45467905296373,
+  "solver_seconds": 1143.0780000000377,
+  "reference_available": true,
+  "Y_single_reference": 0.553692976860658,
+  "Y_tensor_reference": 0.5507661584068662,
+  "Y_single_error": 1.391036475451024e-06,
+  "Y_tensor_error": 1.583284206296831e-06,
+  "supported_cycles_reference": 756
+}

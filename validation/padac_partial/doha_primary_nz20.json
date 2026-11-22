@@ -1,0 +1,17 @@
+{
+  "city": "doha",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3652,
+  "supported_cycles": 772,
+  "Y_single": 0.4825141387851157,
+  "Y_tensor": 0.4809812280299964,
+  "peak_Ts_C": 83.14898888862317,
+  "solver_seconds": 1153.2970000000205,
+  "reference_available": true,
+  "Y_single_reference": 0.4825163778701907,
+  "Y_tensor_reference": 0.4809834685763441,
+  "Y_single_error": -2.2390850750175773e-06,
+  "Y_tensor_error": -2.24054634773152e-06,
+  "supported_cycles_reference": 772
+}
