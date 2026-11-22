@@ -61,7 +61,7 @@ See `validation/padac_partial/PADAC_STATUS.md` and `batch_status_nz20.csv`. Unti
 ## Evidence files
 
 - `validation/evidence/`: machine-readable core calculation status.
-- `validation/tables/`: newly regenerated coverage and pairwise outputs.
+- `validation/tables/`: newly regenerated coverage, H/N Table S6 summary, and pairwise outputs.
 - `validation/figures/` and `validation/si_figures/`: executable numerical verification plots.
 - `validation/reference_artwork/`: canonical final PNG artwork, dimensions, source-media mapping, and SHA-256 hashes.
 - `validation/input_sha256.csv`: hashes for the final manuscript, SI, raw inputs, and frozen source tables used in this run.

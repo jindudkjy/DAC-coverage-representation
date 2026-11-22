@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "input": "data/frozen/MAIN_climate_H_scores.csv",
+  "input_sha256": "09b7f406867567cee623ce69bbbb27dba6d920ead43ddafd646aad4a8b3bf5a8",
+  "location_rows": 2826,
+  "material_panels": 108,
+  "summary_rows": 12,
+  "materials_per_summary": 9,
+  "definition": "H_per_transition = H / N",
+  "partial_tau_definition": "(tau_xy - tau_xN*tau_yN) / sqrt((1-tau_xN^2)*(1-tau_yN^2))",
+  "checked_against": "SI Table S6 and Figure 3b"
+}
