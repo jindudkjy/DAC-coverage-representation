@@ -2,7 +2,7 @@
 
 Validation date: 2026-11-23
 
-Scope: numerical reproducibility of the final closed manuscript and Supporting Information. This validation does not establish new experimental validity for the physical models.
+Scope: numerical reproducibility of the latest submission manuscript `20261123j` and Supporting Information `20261123g`. This validation does not establish new experimental validity for the physical models.
 
 ## Overall conclusion
 
@@ -40,8 +40,9 @@ The full publication-scale PADAC thermal integration remains a separately tracke
 - Main numerical figure reconstructions: Figures 2-7 generated and visually inspected.
 - SI numerical figure reconstructions: current Figures S3 and S5-S7 generated from the retained sources.
 - Figure 1 is conceptual artwork and is not treated as a computed output.
-- Final closed-manuscript artwork: Figures 2-7 and SI Figures S5-S7 re-extracted from the submitted DOCX files.
-- Exact artwork regression: 9/9 files match the canonical PNG byte streams by SHA-256 and have zero differing RGBA pixels.
+- Latest submission artwork audit: Figures 2-7 and SI Figures S5-S7 were mapped to the embedded DOCX media streams.
+- Artwork continuity: 8/9 tracked PNG streams match the preceding reference by uncompressed size and ZIP CRC-32; Figure 3 changed.
+- The preceding submission baseline passed the 9/9 SHA-256 and zero-differing-RGBA-pixel regression. The latest submission is not labeled 9/9 exact until the Figure 3 reference PNG is refreshed and the pixel regression is rerun.
 - Numerical replots remain separate from the exact-artwork regression because extraction verifies submission fidelity while recalculation verifies scientific values.
 
 ## PADAC split-run status
