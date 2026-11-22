@@ -153,11 +153,10 @@ python scripts/verify_artwork.py \
   --candidate-dir results/final_artwork
 ```
 
-For the latest submission files, eight of the nine tracked artwork PNG streams retain the
-same uncompressed size and ZIP CRC-32 as the current reference files. Figure 3 changed
-and must replace the stored reference before the latest submission can be reported as a
-9/9 byte- and pixel-identical artwork regression. Until that refresh, the exact-artwork
-claim applies to the preceding submission baseline only.
+For the latest submission files, all nine tracked artwork PNG streams match the canonical
+reference files by SHA-256. Figure 3 was refreshed from the latest manuscript DOCX; the
+other eight streams were unchanged. Byte identity also implies zero differing decoded
+pixels for the stored PNG artwork.
 
 This is an artwork-preservation check, not a substitute for scientific recalculation.
 The independent calculation path remains the table and numerical-figure workflow above.
