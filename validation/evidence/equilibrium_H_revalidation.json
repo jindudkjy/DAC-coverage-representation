@@ -1,0 +1,38 @@
+{
+  "input_sha256": {
+    "equilibrium": "8175d911af91746ac73d4016875586bcc948157a5504321b9c179a389b0f5639",
+    "weather": "e69557396811e1a82264e41b1932e91c4cc06332bb00dcaa20232248e8618124",
+    "bounds": "94ee8247632b6b6ad48f659f2ca5e5e6c623da271ccf9c7cb84fc77ac9d3644c"
+  },
+  "weather_rows": 3156192,
+  "climates": 36,
+  "score_regression": {
+    "actual_rows": 2826,
+    "expected_rows": 2826,
+    "matched_rows": 2826,
+    "left_only": 0,
+    "right_only": 0,
+    "max_abs_error": {
+      "H_single": 4.547473508864641e-13,
+      "H_tensor": 4.547473508864641e-13,
+      "H_RH": 1.4551915228366852e-11,
+      "N": 0.0
+    },
+    "pass_1e_minus_9": true
+  },
+  "panel_regression": {
+    "actual_rows": 12,
+    "expected_rows": 12,
+    "matched_rows": 12,
+    "left_only": 0,
+    "right_only": 0,
+    "max_abs_error": {
+      "n_materials": 0.0,
+      "median_kendall_tau": 1.1102230246251565e-16,
+      "median_spearman_rho": 1.1102230246251565e-16,
+      "median_relative_H_error": 3.437805595751797e-13
+    },
+    "pass_1e_minus_9": true
+  },
+  "elapsed_seconds": 32.832303524017334
+}

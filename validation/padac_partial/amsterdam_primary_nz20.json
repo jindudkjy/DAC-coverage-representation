@@ -1,0 +1,17 @@
+{
+  "city": "amsterdam",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3632,
+  "supported_cycles": 11,
+  "Y_single": 0.6108250988621148,
+  "Y_tensor": 0.6454439021317455,
+  "peak_Ts_C": 66.92705244048524,
+  "solver_seconds": 8911.45299999998,
+  "reference_available": true,
+  "Y_single_reference": 0.6108001540501836,
+  "Y_tensor_reference": 0.645418238070759,
+  "Y_single_error": 2.494481193116016e-05,
+  "Y_tensor_error": 2.5664060986474446e-05,
+  "supported_cycles_reference": 11
+}

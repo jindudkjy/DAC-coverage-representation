@@ -1,0 +1,6 @@
+column,comparison,max_abs_error,passed
+baseline_transition_coverage,numeric,9.367506770274758e-17,True
+candidate_transition_coverage,numeric,9.367506770274758e-17,True
+gain_percentage_points,numeric,1.7763568394002505e-15,True
+max_location_gain_pp,numeric,3.552713678800501e-15,True
+median_location_gain_pp,numeric,8.881784197001252e-16,True

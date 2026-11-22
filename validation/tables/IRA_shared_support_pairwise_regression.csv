@@ -1,0 +1,14 @@
+column,comparison,max_abs_error,passed
+n_H_tie_pairs,numeric,0.0,True
+n_Hrev_Yrev,numeric,0.0,True
+n_Hrev_Ysafe,numeric,0.0,True
+n_Hsafe_Yrev,numeric,0.0,True
+n_Hsafe_Ysafe,numeric,0.0,True
+n_Y_tie_pairs,numeric,0.0,True
+n_common_finite_climates,numeric,0.0,True
+n_joint_strict_pairs,numeric,0.0,True
+n_pairs,numeric,0.0,True
+rho_H_single_tensor,numeric,0.0,True
+rho_Y_single_tensor,numeric,1.1102230246251565e-16,True
+tau_H_single_tensor,numeric,1.1102230246251565e-16,True
+tau_Y_single_tensor,numeric,1.1102230246251565e-16,True

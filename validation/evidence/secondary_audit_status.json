@@ -1,0 +1,26 @@
+{
+  "tau_identity": {
+    "combinations": 108,
+    "max_abs_regression_error": 3.3306690738754696e-16,
+    "max_absolute_identity_error": 1.4051260155412137e-16,
+    "pass": true
+  },
+  "temperature_correction_pairs": {
+    "rows": 39151,
+    "max_C_identity_error": 9.094947017729282e-13,
+    "max_relative_identity_error": 4.41511360804725e-09,
+    "margin_flag_mismatches": 0,
+    "reversal_flag_mismatches": 0,
+    "pass": true
+  },
+  "SI_Fig_S5": {
+    "rows": 3,
+    "max_abs_error": 1.7763568394002505e-15,
+    "pass": true
+  },
+  "SI_Fig_S6": {
+    "rows": 4,
+    "max_abs_error": 0.0,
+    "pass": true
+  }
+}

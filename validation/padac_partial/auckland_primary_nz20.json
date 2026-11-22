@@ -1,0 +1,17 @@
+{
+  "city": "auckland",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3632,
+  "supported_cycles": 46,
+  "Y_single": 0.6201805179515305,
+  "Y_tensor": 0.6770223838138912,
+  "peak_Ts_C": 74.97148782008286,
+  "solver_seconds": 9221.795999999973,
+  "reference_available": true,
+  "Y_single_reference": 0.6201717124894331,
+  "Y_tensor_reference": 0.6770126066669002,
+  "Y_single_error": 8.805462097360994e-06,
+  "Y_tensor_error": 9.777146991019059e-06,
+  "supported_cycles_reference": 46
+}

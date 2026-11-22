@@ -1,0 +1,5 @@
+label,N,Y_only,H_only
+IRA lower,595,17,7
+IRA upper,595,9,9
+ImCOF 80 degC,435,49,18
+ImCOF solar,435,13,25

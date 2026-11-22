@@ -1,0 +1,4 @@
+category,n_cases,definition
+A,48,affine single isotherm
+B,4,nonlinear isotherm with same ordering as RH variation
+C,56,nonlinear isotherm with different ordering from RH variation

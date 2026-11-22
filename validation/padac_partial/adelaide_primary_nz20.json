@@ -1,0 +1,17 @@
+{
+  "city": "adelaide",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3632,
+  "supported_cycles": 1312,
+  "Y_single": 0.6843461239094726,
+  "Y_tensor": 0.7157590646142188,
+  "peak_Ts_C": 88.85576424760248,
+  "solver_seconds": 1737.045999999973,
+  "reference_available": true,
+  "Y_single_reference": 0.6843463227389963,
+  "Y_tensor_reference": 0.7157592781915879,
+  "Y_single_error": -1.9882952373428964e-07,
+  "Y_tensor_error": -2.135773691236409e-07,
+  "supported_cycles_reference": 1312
+}

@@ -1,0 +1,19 @@
+{
+  "whole_H_rows": 72,
+  "whole_H_expected_rows": 72,
+  "whole_H_max_abs_errors": {
+    "H_whole": 1.1368683772161603e-13,
+    "n_common_transitions": 0.0,
+    "supported_hour_fraction": 8.326672684688674e-17
+  },
+  "whole_H_pass_1e_minus_9": true,
+  "pair_rows": 870,
+  "pair_summary_max_abs_errors": {
+    "n_pairs": 0.0,
+    "H_only": 0.0,
+    "Y_only": 0.0,
+    "both": 0.0,
+    "neither": 0.0
+  },
+  "pair_summary_pass": true
+}

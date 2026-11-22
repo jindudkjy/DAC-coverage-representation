@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-19",
+  "measurement_domain_extension": {
+    "status": "independent_source_to_output_regression_pass",
+    "weather_rows": 3156192,
+    "cities": 36,
+    "eligible_hourly_transitions": 3156156,
+    "candidate_rows": 72,
+    "numeric_columns_checked": 5,
+    "largest_abs_error_all_columns": 3.552713678800501e-15,
+    "branch_RH_boundary_source": "MAIN_equilibrium_dataset_master.xlsx/06_RAW_QRHT, intersection of endpoint isotherms",
+    "reproduction_of_original_code": false
+  },
+  "IRA_shared_hour": {
+    "status": "frozen_climate_score_to_pairwise_regression_pass",
+    "comparisons": 4,
+    "pairs_per_comparison": 595,
+    "total_pairs": 2380,
+    "largest_abs_error": 1.1102230246251565e-16,
+    "Hsafe_Yrev_counts_original_lower_upper": [186,146],
+    "Hsafe_Yrev_counts_common_hour_lower_upper": [17,9],
+    "hourly_Y_regenerated": false
+  },
+  "manuscript_figures_2_to_7": {
+    "status": "source_data_replots_created_not_artwork_matched",
+    "figure_count": 6,
+    "Fig1_excluded": true
+  }
+}

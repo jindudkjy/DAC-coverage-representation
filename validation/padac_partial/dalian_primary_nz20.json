@@ -1,0 +1,17 @@
+{
+  "city": "dalian",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3652,
+  "supported_cycles": 891,
+  "Y_single": 0.3435948975842068,
+  "Y_tensor": 0.3494388914368569,
+  "peak_Ts_C": 70.40157558911903,
+  "solver_seconds": 9205.20299999998,
+  "reference_available": true,
+  "Y_single_reference": 0.3435938496981994,
+  "Y_tensor_reference": 0.3494375698417509,
+  "Y_single_error": 1.047886007410348e-06,
+  "Y_tensor_error": 1.3215951060185915e-06,
+  "supported_cycles_reference": 891
+}

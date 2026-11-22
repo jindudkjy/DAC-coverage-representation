@@ -1,0 +1,17 @@
+{
+  "city": "beijing",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3652,
+  "supported_cycles": 2008,
+  "Y_single": 0.42674487231935876,
+  "Y_tensor": 0.4136550524064357,
+  "peak_Ts_C": 78.91742647550019,
+  "solver_seconds": 9389.140000000014,
+  "reference_available": true,
+  "Y_single_reference": 0.4267451736698149,
+  "Y_tensor_reference": 0.4136553015378284,
+  "Y_single_error": -3.0135045614443356e-07,
+  "Y_tensor_error": -2.4913139273774476e-07,
+  "supported_cycles_reference": 2008
+}

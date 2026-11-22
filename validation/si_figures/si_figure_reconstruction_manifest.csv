@@ -1,0 +1,4 @@
+figure,output,source_files,note
+S5,FigS5_numerical_reconstruction.png,SI_Fig_S5_source_data.csv,Selected independently regenerated boundary-extension values.
+S6,FigS6_numerical_reconstruction.png,SI_Fig_S6_source_data.csv,Shared-hour and representation-specific IRA classifications.
+S7,FigS7_numerical_reconstruction.png,SI_added_temperature_held_interior.csv; Mg_LWT_analogue_delta_tau_bootstrap.csv,LWT observed values and Mg paired-location percentile ranges.

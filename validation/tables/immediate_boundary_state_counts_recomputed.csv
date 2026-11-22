@@ -1,0 +1,4 @@
+T_low,T_high,RH_low,RH_high,states_upper_RH_5pp_band,states_colder_5C_band,state_count_ratio
+-20,-5,0,70,7918,337,23.495548961424333
+-20,5,0,70,30112,337,89.35311572700297
+-20,5,0,80,46792,1092,42.84981684981685

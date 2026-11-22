@@ -1,0 +1,34 @@
+{
+  "n_computed_rows": 144,
+  "n_regression_rows": 140,
+  "n_expected": 140,
+  "max_abs_err_single": 2.2737367544323206e-13,
+  "max_abs_err_tensor": 5.684341886080802e-14,
+  "unmatched_computed_rows": [
+    {
+      "climate": "belem",
+      "branch": "lower",
+      "support_treatment": "original_rep_specific",
+      "n_common_states": 2
+    },
+    {
+      "climate": "belem",
+      "branch": "lower",
+      "support_treatment": "common_hour",
+      "n_common_states": 2
+    },
+    {
+      "climate": "dublin",
+      "branch": "upper",
+      "support_treatment": "original_rep_specific",
+      "n_common_states": 0
+    },
+    {
+      "climate": "dublin",
+      "branch": "upper",
+      "support_treatment": "common_hour",
+      "n_common_states": 0
+    }
+  ],
+  "pass_1e_minus_6": true
+}

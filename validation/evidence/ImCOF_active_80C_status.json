@@ -1,0 +1,10 @@
+{
+  "rows": 72,
+  "expected_rows": 72,
+  "max_abs_errors": {
+    "Y": 2.220446049250313e-16,
+    "n_supported_cycles": 0.0,
+    "supported_cycle_fraction": 9.367506770274758e-17
+  },
+  "pass_1e_minus_9": true
+}

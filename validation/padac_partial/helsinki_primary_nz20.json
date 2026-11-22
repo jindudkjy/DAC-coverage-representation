@@ -1,0 +1,17 @@
+{
+  "city": "helsinki",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3632,
+  "supported_cycles": 19,
+  "Y_single": 0.40656148654950575,
+  "Y_tensor": 0.4355982134516248,
+  "peak_Ts_C": 61.67230980342673,
+  "solver_seconds": 3343.3439999999828,
+  "reference_available": true,
+  "Y_single_reference": 0.4065575332192419,
+  "Y_tensor_reference": 0.4355945207039599,
+  "Y_single_error": 3.95333026387279e-06,
+  "Y_tensor_error": 3.692747664929552e-06,
+  "supported_cycles_reference": 19
+}
