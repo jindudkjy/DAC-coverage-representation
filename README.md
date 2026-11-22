@@ -145,15 +145,21 @@ both SHA-256 and every RGBA pixel to match:
 
 ```bash
 python scripts/extract_final_artwork.py \
-  --manuscript Manuscript_Coverage_Representation_DAC_submission_20261123e.docx \
-  --supporting-information Supporting_Information_Coverage_Representation_DAC_final_20261123c.docx \
+  --manuscript Manuscript_Coverage_Representation_DAC_submission_20261123j.docx \
+  --supporting-information Supporting_Information_Coverage_Representation_DAC_final_20261123g.docx \
   --output-dir results/final_artwork
 
 python scripts/verify_artwork.py \
   --candidate-dir results/final_artwork
 ```
 
-This is an exact artwork-preservation check, not a substitute for scientific recalculation.
+For the latest submission files, eight of the nine tracked artwork PNG streams retain the
+same uncompressed size and ZIP CRC-32 as the current reference files. Figure 3 changed
+and must replace the stored reference before the latest submission can be reported as a
+9/9 byte- and pixel-identical artwork regression. Until that refresh, the exact-artwork
+claim applies to the preceding submission baseline only.
+
+This is an artwork-preservation check, not a substitute for scientific recalculation.
 The independent calculation path remains the table and numerical-figure workflow above.
 
 ## Test and verify
