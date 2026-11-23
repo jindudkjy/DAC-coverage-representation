@@ -9,6 +9,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from dac_equilibrium.h_panel import reconstruct_h_panel
 from dac_equilibrium.metrics import pairwise_reversal_table, summarize_transition_normalized_scores
 from dac_equilibrium.verification import compare_frames
 from dac_equilibrium.weather_support import (
@@ -101,9 +102,12 @@ def reproduce_ira_pairs(input_dir: Path, output_dir: Path, atol: float) -> None:
             raise AssertionError("IRA pairwise regression failed")
 
 
-def reproduce_hn(input_dir: Path, output_dir: Path) -> None:
-    source = input_dir / "MAIN_climate_H_scores.csv"
-    panel, by_material, summary = summarize_transition_normalized_scores(pd.read_csv(source))
+def reproduce_hn(source: Path, output_dir: Path, permutations: int, seed: int) -> None:
+    panel, by_material, summary = summarize_transition_normalized_scores(
+        pd.read_csv(source),
+        n_reassignments=permutations,
+        permutation_seed=seed,
+    )
     if len(panel) != 2826 or len(by_material) != 108:
         raise AssertionError(
             f"Unexpected H/N panel dimensions: {len(panel)} rows, {len(by_material)} groups"
@@ -113,13 +117,48 @@ def reproduce_hn(input_dir: Path, output_dir: Path) -> None:
     summary.to_csv(output_dir / "Table_S6_HN_summary_recomputed.csv", index=False, float_format="%.16g")
 
 
+def reproduce_h_panel(
+    weather_file: Path,
+    equilibrium_file: Path,
+    bounds_file: Path,
+    reference_file: Path,
+    output_dir: Path,
+    atol: float,
+) -> Path:
+    panel = reconstruct_h_panel(weather_file, equilibrium_file, bounds_file)
+    output = output_dir / "MAIN_climate_H_scores_recomputed.csv"
+    panel.to_csv(output, index=False, float_format="%.16g")
+    if len(panel) != 2826:
+        raise AssertionError(f"Expected 2,826 H-panel rows, found {len(panel)}")
+    if reference_file.exists():
+        audit = compare_frames(
+            panel,
+            pd.read_csv(reference_file),
+            keys=["material", "branch", "temporal_mode", "climate_class", "city"],
+            atol=atol,
+            rtol=0,
+        )
+        audit.to_csv(output_dir / "MAIN_climate_H_scores_regression.csv", index=False)
+        if not audit.passed.all():
+            raise AssertionError("Raw-input H-panel regression failed")
+    return output
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--input-dir", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, default=Path("results"))
     parser.add_argument(
         "--target",
-        choices=("all", "coverage", "measurement-domain", "hn", "ira-pairs"),
+        choices=(
+            "all",
+            "coverage",
+            "measurement-domain",
+            "h-panel",
+            "h-to-hn",
+            "hn",
+            "ira-pairs",
+        ),
         default="all",
     )
     root = Path(__file__).resolve().parents[1]
@@ -139,6 +178,8 @@ def main() -> None:
         default=root / "data/equilibrium/MAIN_equilibrium_dataset_master.xlsx",
     )
     parser.add_argument("--atol", type=float, default=1e-9)
+    parser.add_argument("--permutations", type=int, default=3000)
+    parser.add_argument("--seed", type=int, default=20261013)
     args = parser.parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
     if args.target in {"all", "coverage", "measurement-domain"}:
@@ -150,8 +191,18 @@ def main() -> None:
             args.bounds_file,
             args.equilibrium_file,
         )
-    if args.target in {"all", "hn"}:
-        reproduce_hn(args.input_dir, args.output_dir)
+    h_panel_source = args.input_dir / "MAIN_climate_H_scores.csv"
+    if args.target in {"all", "h-panel", "h-to-hn"}:
+        h_panel_source = reproduce_h_panel(
+            args.weather_file,
+            args.equilibrium_file,
+            args.bounds_file,
+            args.input_dir / "MAIN_climate_H_scores.csv",
+            args.output_dir,
+            args.atol,
+        )
+    if args.target in {"all", "h-to-hn", "hn"}:
+        reproduce_hn(h_panel_source, args.output_dir, args.permutations, args.seed)
     if args.target in {"all", "ira-pairs"}:
         reproduce_ira_pairs(args.input_dir, args.output_dir, args.atol)
 

@@ -2,8 +2,10 @@ import numpy as np
 import pandas as pd
 import pytest
 
+from dac_equilibrium.h_panel import temporal_trajectory
 from dac_equilibrium.metrics import (
     partial_kendall_tau,
+    random_reassignment_reversal_fractions,
     rank_agreement,
     summarize_transition_normalized_scores,
     transition_normalized_scores,
@@ -59,3 +61,41 @@ def test_h_over_n_rejects_nonpositive_transition_counts():
     )
     with pytest.raises(ValueError, match="positive"):
         transition_normalized_scores(frame)
+
+
+def test_random_reassignment_is_seeded_and_retains_requested_size():
+    single = np.array([2.0, 4.0, 7.0, 11.0, 15.0])
+    tensor = np.array([2.4, 3.6, 8.4, 9.9, 18.0])
+    transitions = np.array([10, 12, 9, 14, 11])
+    first = random_reassignment_reversal_fractions(
+        single,
+        tensor,
+        transitions,
+        n_reassignments=50,
+        rng=np.random.default_rng(20261013),
+    )
+    second = random_reassignment_reversal_fractions(
+        single,
+        tensor,
+        transitions,
+        n_reassignments=50,
+        rng=np.random.default_rng(20261013),
+    )
+    assert len(first) == 50
+    np.testing.assert_array_equal(first, second)
+    assert np.all((first >= 0) & (first <= 1))
+
+
+def test_temporal_trajectory_preserves_frozen_alignment_conventions():
+    weather = pd.DataFrame(
+        {
+            "timestamp_utc": pd.date_range("2020-01-01", periods=6, freq="h", tz="UTC"),
+            "temperature_C": [0.0, 2.0, 4.0, 6.0, 8.0, 10.0],
+            "RH_pct": [10.0, 20.0, 30.0, 40.0, 50.0, 60.0],
+        }
+    )
+    subsampled = temporal_trajectory(weather, "subsample_3h")
+    assert subsampled["temperature_C"].tolist() == [0.0, 6.0]
+    averaged = temporal_trajectory(weather, "average_6h")
+    assert averaged.loc[0, "temperature_C"] == pytest.approx(5.0)
+    assert averaged.loc[0, "RH_pct"] == pytest.approx(35.0)

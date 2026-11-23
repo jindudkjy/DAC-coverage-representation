@@ -107,10 +107,16 @@ The coverage target regenerates:
 - immediate RH and cold-boundary state counts;
 - the ice-saturation-capped coverage sensitivity.
 
-The H/N target recomputes the 2,826 location-level ratios, all 108 material-panel
-Kendall coefficients, the manuscript partial-Kendall statistic controlling for N, and
-the 12 medians reported in SI Table S6. The IRA target reconstructs all strict H/Y
-location-pair classes from saved climate-level scores.
+The `h-panel` target starts from the material workbook and hourly weather, reconstructs
+all location-level `H_single`, `H_tensor`, `H_RH` and `N` values, and regresses the
+2,826 rows against the retained reference panel. The `hn` target then recomputes the
+location-level ratios, all 108 material-panel Kendall coefficients, the partial-Kendall
+statistic controlling for N, and the 3,000-reassignment permutation columns in SI
+Table S6. With `--target h-to-hn` (or `all`), the H/N calculation consumes the newly
+reconstructed panel rather than the frozen copy, providing the complete weather ->
+H -> H/N path. The 3,000 reassignments use the declared seed `20261013`.
+The IRA target reconstructs all strict H/Y location-pair classes from saved
+climate-level scores.
 
 The H/N calculation can also be run independently:
 
@@ -118,6 +124,24 @@ The H/N calculation can also be run independently:
 python scripts/reproduce_hn_analysis.py \
   --input-file data/frozen/MAIN_climate_H_scores.csv \
   --output-dir results/tables
+```
+
+To regenerate only the raw-input H panel before the H/N analysis:
+
+```bash
+python scripts/reproduce_tables.py \
+  --input-dir data/frozen \
+  --output-dir results/tables \
+  --target h-panel
+```
+
+To run the complete raw-input H and H/N path in one command:
+
+```bash
+python scripts/reproduce_tables.py \
+  --input-dir data/frozen \
+  --output-dir results/tables \
+  --target h-to-hn
 ```
 
 ## Reproduce numerical figure content
@@ -178,7 +202,11 @@ The independent calculation path remains the table and numerical-figure workflow
 
 ```bash
 pytest
-python scripts/verify_frozen.py --input-dir data/frozen --output-dir results/verification
+python scripts/verify_frozen.py \
+  results/tables/MAIN_climate_H_scores_recomputed.csv \
+  data/frozen/MAIN_climate_H_scores.csv \
+  --keys material branch temporal_mode climate_class city \
+  --report results/verification/MAIN_climate_H_scores_regression.csv
 ```
 
 Synthetic unit tests cover interpolation support, H definitions, pairwise reversal classes, LDF propagation, material-specific release endpoints, ice-saturation RH limits, and boundary-state counting. Full-data regression results and tolerances are summarized in `VALIDATION.md`.

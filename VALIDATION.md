@@ -16,6 +16,7 @@ The full publication-scale PADAC thermal integration remains a separately tracke
 | --- | ---: | ---: | --- |
 | Equilibrium H panel | 2,826 rows | 4.55e-13 for H; 1.46e-11 for H_RH | pass |
 | H/N and partial-Kendall analysis | 108 material panels; 12 Table S6 medians | exact to displayed precision | pass |
+| H/N random reassignment | 108 panels x 3,000 seeded reassignments | main-text 10.14%, 12.91%, 8 and 10 reproduced | pass |
 | Figure 3 panel summary | 12 rows | 3.44e-13 | pass |
 | Native-hour boundary extension | 72 rows | 3.55e-15 percentage points | pass |
 | IRA hourly LDF Y | 140 frozen-cohort rows | 2.27e-13 mmol g-1 | pass |
@@ -35,9 +36,17 @@ The full publication-scale PADAC thermal integration remains a separately tracke
 - Ice-capped relative coverage gains reproduce 36.34%, 30.04% and 33.72% for the three upper-RH extensions and 1.66%, 0.35% and 1.99% for the corresponding cold extensions.
 - The core boundary-extension regression passed at absolute tolerance 1e-9; the observed maximum error was 3.55e-15.
 
+## H to H/N end-to-end path
+
+- `scripts/reproduce_tables.py --target h-panel` reconstructs all 2,826 location rows directly from the hourly weather, equilibrium workbook and material-domain bounds; it does not read the retained H panel as calculation input. The `h-to-hn` target continues through the H/N and permutation analysis in the same run.
+- The reconstructed `H_single` and `H_tensor` agree with the retained reference within 4.55e-13, `H_RH` within 1.46e-11, and `N` exactly.
+- The `hn` target then consumes that reconstructed panel and performs 3,000 seeded relative-change reassignments per material, branch and temporal case.
+- The main-text permutation aggregates reproduce 10.14% and 12.91%; 8 and 10 material cases fall below their corresponding 2.5th percentiles.
+- Ten of the 12 per-mode random medians reproduce the displayed SI Table S6 values. The seeded rerun differs by 0.16 and 0.21 percentage points in lower-branch 6 h and 24 h subsampling, respectively; all 12 below-percentile counts reproduce. These small differences are Monte Carlo sampling variation and do not alter any reported classification or conclusion.
+
 ## Code and figure execution
 
-- Unit tests: the existing suite plus three H/N and partial-Kendall tests.
+- Unit tests: 22 passed, including raw temporal alignment, seeded reassignment, H/N and partial-Kendall tests.
 - Main numerical figure reconstructions: Figures 2-7 generated and visually inspected; Figure 3b is recomputed from the complete 2,826-row H/N panel.
 - SI numerical figure reconstructions: current Figures S3 and S5-S7 generated from the retained sources.
 - Figure 1 is conceptual artwork and is not treated as a computed output.

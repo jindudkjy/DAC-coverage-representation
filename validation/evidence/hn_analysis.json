@@ -1,12 +1,28 @@
 {
   "status": "pass",
-  "input": "data/frozen/MAIN_climate_H_scores.csv",
-  "input_sha256": "09b7f406867567cee623ce69bbbb27dba6d920ead43ddafd646aad4a8b3bf5a8",
+  "input": "results/tables/MAIN_climate_H_scores_recomputed.csv",
+  "input_lineage": "data/weather/MAIN_weather_10yr_hourly.csv + data/equilibrium/MAIN_equilibrium_dataset_master.xlsx + data/frozen/material_domain_bounds.csv",
   "location_rows": 2826,
   "material_panels": 108,
   "summary_rows": 12,
   "materials_per_summary": 9,
   "definition": "H_per_transition = H / N",
   "partial_tau_definition": "(tau_xy - tau_xN*tau_yN) / sqrt((1-tau_xN^2)*(1-tau_yN^2))",
+  "permutation_method": "Reassign (H_tensor-H_single)/H_single among locations within each material/branch/temporal case while holding H_single and N fixed",
+  "permutation_reassignments": 3000,
+  "permutation_seed": 20261013,
+  "manuscript_overall": {
+    "lower_random_reassignment_fraction": 0.10138339920948616,
+    "upper_random_reassignment_fraction": 0.1290914066776136,
+    "lower_materials_below_q025": 8,
+    "upper_materials_below_q025": 10
+  },
+  "table_s6_random_columns": {
+    "per_mode_medians_matching_displayed_value": 10,
+    "per_mode_medians_checked": 12,
+    "maximum_monte_carlo_difference_percentage_points": 0.21301075268817,
+    "below_q025_counts_matching": 12,
+    "below_q025_counts_checked": 12
+  },
   "checked_against": "SI Table S6 and Figure 3b"
 }

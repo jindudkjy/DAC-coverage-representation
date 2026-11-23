@@ -235,13 +235,56 @@ def _strict_reversal_fraction(x: np.ndarray, y: np.ndarray) -> tuple[int, int, f
     return reversed_pairs, comparable_pairs, float(fraction)
 
 
+def random_reassignment_reversal_fractions(
+    h_single: np.ndarray,
+    h_tensor: np.ndarray,
+    transitions: np.ndarray,
+    *,
+    n_reassignments: int,
+    rng: np.random.Generator,
+) -> np.ndarray:
+    """Reassign relative H changes while holding H_single and N fixed.
+
+    This is the permutation procedure declared in manuscript Section 2.4. The
+    same relative changes apply to H and H/N because both representations share N.
+    """
+    h_single = np.asarray(h_single, dtype=float)
+    h_tensor = np.asarray(h_tensor, dtype=float)
+    transitions = np.asarray(transitions, dtype=float)
+    if n_reassignments < 1:
+        return np.array([], dtype=float)
+    if np.any(~np.isfinite(h_single)) or np.any(h_single == 0):
+        raise ValueError("Permutation test requires finite, nonzero H_single values")
+    relative_change = (h_tensor - h_single) / h_single
+    single_per_n = h_single / transitions
+    left, right = np.triu_indices(len(single_per_n), 1)
+    single_delta = single_per_n[left] - single_per_n[right]
+    fractions = np.empty(n_reassignments, dtype=float)
+    for index in range(n_reassignments):
+        reassigned = rng.permutation(relative_change)
+        tensor_per_n = single_per_n * (1.0 + reassigned)
+        tensor_delta = tensor_per_n[left] - tensor_per_n[right]
+        comparable = (single_delta != 0) & (tensor_delta != 0)
+        fractions[index] = (
+            np.mean(np.sign(single_delta[comparable]) != np.sign(tensor_delta[comparable]))
+            if comparable.any()
+            else np.nan
+        )
+    return fractions
+
+
 def summarize_transition_normalized_scores(
     scores: pd.DataFrame,
+    *,
+    n_reassignments: int = 0,
+    permutation_seed: int = 20261013,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """Reproduce the location panel, material statistics, and SI Table S6 medians."""
     frame = transition_normalized_scores(scores)
     records: list[dict[str, float | int | str]] = []
+    rng = np.random.default_rng(permutation_seed)
     keys = ["material", "branch", "temporal_mode"]
+    # Sorted cell order is part of the declared seeded permutation lineage.
     for (material, branch, temporal_mode), group in frame.groupby(keys, sort=True):
         single = group["H_single"].to_numpy(float)
         tensor = group["H_tensor"].to_numpy(float)
@@ -255,6 +298,22 @@ def summarize_transition_normalized_scores(
         partial = partial_kendall_tau(single, tensor, transitions)
         n_reversed, n_comparable, reversal_fraction = _strict_reversal_fraction(
             single_per_n, tensor_per_n
+        )
+        permutation = random_reassignment_reversal_fractions(
+            single,
+            tensor,
+            transitions,
+            n_reassignments=n_reassignments,
+            rng=rng,
+        )
+        permutation_median = (
+            float(np.nanmedian(permutation)) if len(permutation) else np.nan
+        )
+        permutation_q025 = (
+            float(np.nanquantile(permutation, 0.025)) if len(permutation) else np.nan
+        )
+        permutation_q975 = (
+            float(np.nanquantile(permutation, 0.975)) if len(permutation) else np.nan
         )
         records.append(
             {
@@ -270,6 +329,12 @@ def summarize_transition_normalized_scores(
                 "n_H_over_N_reversed_pairs": n_reversed,
                 "n_H_over_N_comparable_pairs": n_comparable,
                 "H_over_N_reversal_fraction": reversal_fraction,
+                "H_over_N_random_reassignment_median": permutation_median,
+                "H_over_N_random_reassignment_q025": permutation_q025,
+                "H_over_N_random_reassignment_q975": permutation_q975,
+                "H_over_N_below_random_q025": bool(
+                    len(permutation) and reversal_fraction < permutation_q025
+                ),
             }
         )
     by_material = pd.DataFrame(records)
@@ -286,6 +351,12 @@ def summarize_transition_normalized_scores(
             median_tau_H_tensor_N=("tau_H_tensor_N", "median"),
             median_H_over_N_reversal_fraction=(
                 "H_over_N_reversal_fraction", "median"
+            ),
+            median_H_over_N_random_reassignment_fraction=(
+                "H_over_N_random_reassignment_median", "median"
+            ),
+            materials_below_random_q025=(
+                "H_over_N_below_random_q025", "sum"
             ),
         )
         .reset_index()

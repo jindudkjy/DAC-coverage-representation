@@ -6,6 +6,8 @@
   },
   "weather_rows": 3156192,
   "climates": 36,
+  "public_entry_point": "python scripts/reproduce_tables.py --input-dir data/frozen --output-dir results/tables --target h-panel",
+  "implementation": "src/dac_equilibrium/h_panel.py",
   "score_regression": {
     "actual_rows": 2826,
     "expected_rows": 2826,

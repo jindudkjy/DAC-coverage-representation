@@ -24,6 +24,8 @@ def main() -> None:
     )
     parser.add_argument("--output-dir", type=Path, default=ROOT / "results/tables")
     parser.add_argument("--expected-rows", type=int, default=2826)
+    parser.add_argument("--permutations", type=int, default=3000)
+    parser.add_argument("--seed", type=int, default=20261013)
     args = parser.parse_args()
 
     raw = pd.read_csv(args.input_file)
@@ -31,7 +33,11 @@ def main() -> None:
         raise AssertionError(
             f"Expected {args.expected_rows} location rows, found {len(raw)}"
         )
-    panel, by_material, summary = summarize_transition_normalized_scores(raw)
+    panel, by_material, summary = summarize_transition_normalized_scores(
+        raw,
+        n_reassignments=args.permutations,
+        permutation_seed=args.seed,
+    )
     if len(by_material) != 108:
         raise AssertionError(f"Expected 108 material panels, found {len(by_material)}")
     if not (summary["n_materials"] == 9).all():
@@ -53,6 +59,16 @@ def main() -> None:
         index=False,
         float_format="%.16g",
     )
+    permutation_overall = {}
+    for branch, group in by_material.groupby("branch"):
+        permutation_overall[branch] = {
+            "median_random_reassignment_fraction": float(
+                group["H_over_N_random_reassignment_median"].median()
+            ),
+            "materials_below_random_q025": int(
+                group["H_over_N_below_random_q025"].sum()
+            ),
+        }
     audit = {
         "input_file": str(args.input_file),
         "location_rows": len(panel),
@@ -66,6 +82,9 @@ def main() -> None:
             "(tau_xy - tau_xN*tau_yN) / "
             "sqrt((1-tau_xN^2)*(1-tau_yN^2))"
         ),
+        "permutation_reassignments": args.permutations,
+        "permutation_seed": args.seed,
+        "permutation_overall_by_branch": permutation_overall,
     }
     (args.output_dir / "Table_S6_HN_validation.json").write_text(
         json.dumps(audit, indent=2), encoding="utf-8"
