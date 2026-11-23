@@ -45,7 +45,7 @@ DAC-coverage-representation/
 ├── src/dac_equilibrium/
 ├── scripts/
 │   ├── reproduce_tables.py
-│   ├── reproduce_hn_analysis.py
+│   ├── n_controlled_ordering.py
 │   ├── reproduce_figures.py
 │   ├── extract_final_artwork.py
 │   ├── verify_artwork.py
@@ -112,18 +112,22 @@ all location-level `H_single`, `H_tensor`, `H_RH` and `N` values, and regresses 
 2,826 rows against the retained reference panel. The `hn` target then recomputes the
 location-level ratios, all 108 material-panel Kendall coefficients, the partial-Kendall
 statistic controlling for N, and the 3,000-reassignment permutation columns in SI
-Table S6. With `--target h-to-hn` (or `all`), the H/N calculation consumes the newly
-reconstructed panel rather than the frozen copy, providing the complete weather ->
-H -> H/N path. The 3,000 reassignments use the declared seed `20261013`.
+Table S6. It delegates the N-controlled calculation to
+`scripts/n_controlled_ordering.py`. With `--target h-to-hn` (or `all`), that script
+consumes the newly reconstructed panel rather than the frozen copy, providing the
+complete weather -> H -> H/N path. One shared generator with seed `0` is consumed in
+the documented fixed case order, reproducing all printed SI Table S6 cells.
 The IRA target reconstructs all strict H/Y location-pair classes from saved
 climate-level scores.
 
 The H/N calculation can also be run independently:
 
 ```bash
-python scripts/reproduce_hn_analysis.py \
-  --input-file data/frozen/MAIN_climate_H_scores.csv \
-  --output-dir results/tables
+python scripts/n_controlled_ordering.py \
+  data/frozen/MAIN_climate_H_scores.csv \
+  results/tables/N_controlled_ordering_by_case.csv \
+  results/tables/SI_Table_S6_N_controlled_summary.csv \
+  results/tables/Fig3_source_data.csv
 ```
 
 To regenerate only the raw-input H panel before the H/N analysis:

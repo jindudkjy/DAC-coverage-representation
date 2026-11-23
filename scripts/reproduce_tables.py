@@ -9,8 +9,9 @@ from pathlib import Path
 
 import pandas as pd
 
+from n_controlled_ordering import write_outputs as write_n_controlled_outputs
 from dac_equilibrium.h_panel import reconstruct_h_panel
-from dac_equilibrium.metrics import pairwise_reversal_table, summarize_transition_normalized_scores
+from dac_equilibrium.metrics import pairwise_reversal_table, transition_normalized_scores
 from dac_equilibrium.verification import compare_frames
 from dac_equilibrium.weather_support import (
     cap_subzero_rh_at_ice_saturation,
@@ -103,18 +104,25 @@ def reproduce_ira_pairs(input_dir: Path, output_dir: Path, atol: float) -> None:
 
 
 def reproduce_hn(source: Path, output_dir: Path, permutations: int, seed: int) -> None:
-    panel, by_material, summary = summarize_transition_normalized_scores(
-        pd.read_csv(source),
+    raw = pd.read_csv(source)
+    panel = transition_normalized_scores(raw)
+    by_material, summary, figure = write_n_controlled_outputs(
+        raw,
+        output_dir / "N_controlled_ordering_by_case.csv",
+        output_dir / "SI_Table_S6_N_controlled_summary.csv",
+        output_dir / "Fig3_source_data.csv",
         n_reassignments=permutations,
-        permutation_seed=seed,
+        seed=seed,
     )
     if len(panel) != 2826 or len(by_material) != 108:
         raise AssertionError(
             f"Unexpected H/N panel dimensions: {len(panel)} rows, {len(by_material)} groups"
         )
     panel.to_csv(output_dir / "MAIN_climate_HN_scores_recomputed.csv", index=False, float_format="%.16g")
+    # Compatibility aliases retained for earlier public-repository commands.
     by_material.to_csv(output_dir / "Table_S6_HN_by_material_recomputed.csv", index=False, float_format="%.16g")
     summary.to_csv(output_dir / "Table_S6_HN_summary_recomputed.csv", index=False, float_format="%.16g")
+    figure.to_csv(output_dir / "Figure_3b_source_data_recomputed.csv", index=False, float_format="%.16g")
 
 
 def reproduce_h_panel(
@@ -179,7 +187,7 @@ def main() -> None:
     )
     parser.add_argument("--atol", type=float, default=1e-9)
     parser.add_argument("--permutations", type=int, default=3000)
-    parser.add_argument("--seed", type=int, default=20261013)
+    parser.add_argument("--seed", type=int, default=0)
     args = parser.parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
     if args.target in {"all", "coverage", "measurement-domain"}:

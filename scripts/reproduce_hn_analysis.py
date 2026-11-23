@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Reproduce SI Table S6 and Figure 3b source data from the 2,826-row H/N panel."""
+"""Compatibility CLI for the canonical ``n_controlled_ordering.py`` path."""
 
 from __future__ import annotations
 
@@ -9,7 +9,8 @@ from pathlib import Path
 
 import pandas as pd
 
-from dac_equilibrium.metrics import summarize_transition_normalized_scores
+from n_controlled_ordering import write_outputs as write_n_controlled_outputs
+from dac_equilibrium.metrics import transition_normalized_scores
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,7 +26,7 @@ def main() -> None:
     parser.add_argument("--output-dir", type=Path, default=ROOT / "results/tables")
     parser.add_argument("--expected-rows", type=int, default=2826)
     parser.add_argument("--permutations", type=int, default=3000)
-    parser.add_argument("--seed", type=int, default=20261013)
+    parser.add_argument("--seed", type=int, default=0)
     args = parser.parse_args()
 
     raw = pd.read_csv(args.input_file)
@@ -33,17 +34,21 @@ def main() -> None:
         raise AssertionError(
             f"Expected {args.expected_rows} location rows, found {len(raw)}"
         )
-    panel, by_material, summary = summarize_transition_normalized_scores(
+    panel = transition_normalized_scores(raw)
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    by_material, summary, figure = write_n_controlled_outputs(
         raw,
+        args.output_dir / "N_controlled_ordering_by_case.csv",
+        args.output_dir / "SI_Table_S6_N_controlled_summary.csv",
+        args.output_dir / "Fig3_source_data.csv",
         n_reassignments=args.permutations,
-        permutation_seed=args.seed,
+        seed=args.seed,
     )
     if len(by_material) != 108:
         raise AssertionError(f"Expected 108 material panels, found {len(by_material)}")
-    if not (summary["n_materials"] == 9).all():
-        raise AssertionError("Every branch/temporal summary must contain nine materials")
+    if len(summary) != 12:
+        raise AssertionError(f"Expected 12 Table S6 rows, found {len(summary)}")
 
-    args.output_dir.mkdir(parents=True, exist_ok=True)
     panel.to_csv(
         args.output_dir / "MAIN_climate_HN_scores_recomputed.csv",
         index=False,
@@ -59,14 +64,19 @@ def main() -> None:
         index=False,
         float_format="%.16g",
     )
+    figure.to_csv(
+        args.output_dir / "Figure_3b_source_data_recomputed.csv",
+        index=False,
+        float_format="%.16g",
+    )
     permutation_overall = {}
-    for branch, group in by_material.groupby("branch"):
+    for branch, group in by_material.groupby("br"):
         permutation_overall[branch] = {
             "median_random_reassignment_fraction": float(
-                group["H_over_N_random_reassignment_median"].median()
+                group["perm_HN"].median()
             ),
             "materials_below_random_q025": int(
-                group["H_over_N_below_random_q025"].sum()
+                group["below_HN"].sum()
             ),
         }
     audit = {
@@ -84,6 +94,7 @@ def main() -> None:
         ),
         "permutation_reassignments": args.permutations,
         "permutation_seed": args.seed,
+        "permutation_order": "sorted material/branch/temporal case; H draws then H/N draws",
         "permutation_overall_by_branch": permutation_overall,
     }
     (args.output_dir / "Table_S6_HN_validation.json").write_text(

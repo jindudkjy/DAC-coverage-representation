@@ -36,13 +36,11 @@ The full publication-scale PADAC thermal integration remains a separately tracke
 - Ice-capped relative coverage gains reproduce 36.34%, 30.04% and 33.72% for the three upper-RH extensions and 1.66%, 0.35% and 1.99% for the corresponding cold extensions.
 - The core boundary-extension regression passed at absolute tolerance 1e-9; the observed maximum error was 3.55e-15.
 
-## H to H/N end-to-end path
+### SI Table S6 (N-controlled ordering agreement)
 
-- `scripts/reproduce_tables.py --target h-panel` reconstructs all 2,826 location rows directly from the hourly weather, equilibrium workbook and material-domain bounds; it does not read the retained H panel as calculation input. The `h-to-hn` target continues through the H/N and permutation analysis in the same run.
-- The reconstructed `H_single` and `H_tensor` agree with the retained reference within 4.55e-13, `H_RH` within 1.46e-11, and `N` exactly.
-- The `hn` target then consumes that reconstructed panel and performs 3,000 seeded relative-change reassignments per material, branch and temporal case.
-- The main-text permutation aggregates reproduce 10.14% and 12.91%; 8 and 10 material cases fall below their corresponding 2.5th percentiles.
-- Ten of the 12 per-mode random medians reproduce the displayed SI Table S6 values. The seeded rerun differs by 0.16 and 0.21 percentage points in lower-branch 6 h and 24 h subsampling, respectively; all 12 below-percentile counts reproduce. These small differences are Monte Carlo sampling variation and do not alter any reported classification or conclusion.
+`scripts/n_controlled_ordering.py` regenerates every cell of SI Table S6, the H/N values in Section 3.2, and the source data for Fig. 3b from `MAIN_climate_H_scores.csv`. Running it reproduces all 108 printed cells exactly, including the random-reassignment medians and the counts below the 2.5th percentile.
+
+The random-reassignment test uses one generator, `numpy.random.default_rng(0)`, shared across comparison cases in a fixed order. The script docstring documents this order. An implementation that seeds each case separately or processes cases in a different order draws different reassignments. Such an implementation shifts the random-reassignment medians by up to about 0.2 percentage points, and the conclusions and classifications are unchanged.
 
 ## Code and figure execution
 
