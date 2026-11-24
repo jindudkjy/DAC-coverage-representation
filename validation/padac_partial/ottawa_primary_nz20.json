@@ -1,0 +1,17 @@
+{
+  "city": "ottawa",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3632,
+  "supported_cycles": 74,
+  "Y_single": 0.4185228811657831,
+  "Y_tensor": 0.38886614673623415,
+  "peak_Ts_C": 71.92942528061607,
+  "solver_seconds": 1476.5,
+  "reference_available": true,
+  "Y_single_reference": 0.4185192813026172,
+  "Y_tensor_reference": 0.3888625594381559,
+  "Y_single_error": 3.5998631659484026e-06,
+  "Y_tensor_error": 3.5872980782558628e-06,
+  "supported_cycles_reference": 74
+}

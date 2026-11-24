@@ -1,0 +1,17 @@
+{
+  "city": "lisbon",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3632,
+  "supported_cycles": 50,
+  "Y_single": 0.6426365607952682,
+  "Y_tensor": 0.6788164126500671,
+  "peak_Ts_C": 72.33341915582305,
+  "solver_seconds": 1003.0620000000345,
+  "reference_available": true,
+  "Y_single_reference": 0.6426340594833942,
+  "Y_tensor_reference": 0.6788139471420425,
+  "Y_single_error": 2.501311873959189e-06,
+  "Y_tensor_error": 2.4655080246294148e-06,
+  "supported_cycles_reference": 50
+}

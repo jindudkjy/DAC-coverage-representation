@@ -1,0 +1,17 @@
+{
+  "city": "moscow",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3652,
+  "supported_cycles": 52,
+  "Y_single": 0.5574207567949637,
+  "Y_tensor": 0.5970616123574296,
+  "peak_Ts_C": 68.83509338681398,
+  "solver_seconds": 1060.1720000000205,
+  "reference_available": true,
+  "Y_single_reference": 0.5574207386343988,
+  "Y_tensor_reference": 0.5970614974730203,
+  "Y_single_error": 1.8160564940750135e-08,
+  "Y_tensor_error": 1.1488440931906041e-07,
+  "supported_cycles_reference": 52
+}

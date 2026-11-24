@@ -1,0 +1,17 @@
+{
+  "city": "phoenix",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3652,
+  "supported_cycles": 2073,
+  "Y_single": 0.5483819719215983,
+  "Y_tensor": 0.553635410367588,
+  "peak_Ts_C": 85.87476824320667,
+  "solver_seconds": 1531.4839999999385,
+  "reference_available": true,
+  "Y_single_reference": 0.5483819558262426,
+  "Y_tensor_reference": 0.5536353873227968,
+  "Y_single_error": 1.609535571489573e-08,
+  "Y_tensor_error": 2.3044791186421776e-08,
+  "supported_cycles_reference": 2073
+}

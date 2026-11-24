@@ -1,0 +1,17 @@
+{
+  "city": "montreal",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3632,
+  "supported_cycles": 69,
+  "Y_single": 0.5563676229175207,
+  "Y_tensor": 0.5571361130995262,
+  "peak_Ts_C": 72.015784552817,
+  "solver_seconds": 1035.2189999999246,
+  "reference_available": true,
+  "Y_single_reference": 0.5563639179120746,
+  "Y_tensor_reference": 0.5571333857737893,
+  "Y_single_error": 3.7050054461085224e-06,
+  "Y_tensor_error": 2.727325736806563e-06,
+  "supported_cycles_reference": 69
+}

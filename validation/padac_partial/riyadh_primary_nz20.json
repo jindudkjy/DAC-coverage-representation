@@ -1,0 +1,17 @@
+{
+  "city": "riyadh",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3652,
+  "supported_cycles": 1723,
+  "Y_single": 0.5397594393482346,
+  "Y_tensor": 0.5465290798685833,
+  "peak_Ts_C": 87.64298950160682,
+  "solver_seconds": 1601.204000000027,
+  "reference_available": true,
+  "Y_single_reference": 0.5397606465203968,
+  "Y_tensor_reference": 0.5465303178077783,
+  "Y_single_error": -1.2071721622319842e-06,
+  "Y_tensor_error": -1.2379391949313145e-06,
+  "supported_cycles_reference": 1723
+}

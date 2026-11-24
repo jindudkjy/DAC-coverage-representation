@@ -1,0 +1,17 @@
+{
+  "city": "las_vegas",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3632,
+  "supported_cycles": 2390,
+  "Y_single": 0.4554613288788628,
+  "Y_tensor": 0.46004633051415966,
+  "peak_Ts_C": 89.04740249407311,
+  "solver_seconds": 1174.4379999999655,
+  "reference_available": true,
+  "Y_single_reference": 0.4554616450759097,
+  "Y_tensor_reference": 0.4600466372353812,
+  "Y_single_error": -3.1619704687901873e-07,
+  "Y_tensor_error": -3.067212215324133e-07,
+  "supported_cycles_reference": 2390
+}

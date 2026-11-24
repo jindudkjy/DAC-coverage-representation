@@ -177,6 +177,14 @@ Individual cities can be run with `scripts/reproduce_padac_city.py CITY --nz 20`
 The final verifier requires all 36 city JSON files, retains the 30 evaluable modeled
 locations, reconstructs all 435 strict location pairs, and tests the manuscript's
 solar-regeneration result of 13 Y-only reversals and zero joint H/Y reversals.
+The archived 36-city rerun passes this check: 397 neither, 25 H-only, 13 Y-only and
+zero joint H/Y reversals. To verify the bundled results directly:
+
+```bash
+python scripts/verify_padac_solar.py \
+  --result-dir validation/padac_partial \
+  --output results/padac/solar_pair_verification.json
+```
 
 ## Preserve and verify the final artwork exactly
 
@@ -217,7 +225,7 @@ Synthetic unit tests cover interpolation support, H definitions, pairwise revers
 
 ## Reproducibility boundary
 
-Core H, coverage, IRA Y, whole-range ImCOF H, fixed-80 degC ImCOF Y, and pair classifications were independently regenerated to numerical tolerance. The 10-year, `nz=20` PADAC thermal rerun is computationally expensive and is reported separately with city-level status. Frozen PADAC scores are used only where explicitly labeled.
+Core H, coverage, IRA Y, whole-range ImCOF H, fixed-80 degC ImCOF Y, pair classifications, and the full 10-year `nz=20` PADAC thermal calculation were independently regenerated to numerical tolerance. The completed 36-city PADAC evidence and final 13-of-435 pair verification are retained under `validation/padac_partial`.
 
 ## Citation and license
 

@@ -1,0 +1,17 @@
+{
+  "city": "warsaw",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3632,
+  "supported_cycles": 477,
+  "Y_single": 0.60035921707587,
+  "Y_tensor": 0.6251784759688752,
+  "peak_Ts_C": 69.01514690630589,
+  "solver_seconds": 946.9219999999041,
+  "reference_available": true,
+  "Y_single_reference": 0.6003571019994444,
+  "Y_tensor_reference": 0.6251762866260004,
+  "Y_single_error": 2.1150764256683274e-06,
+  "Y_tensor_error": 2.189342874769906e-06,
+  "supported_cycles_reference": 477
+}

@@ -1,0 +1,17 @@
+{
+  "city": "singapore",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3652,
+  "supported_cycles": 0,
+  "Y_single": NaN,
+  "Y_tensor": NaN,
+  "peak_Ts_C": 73.34646576177997,
+  "solver_seconds": 1002.234999999986,
+  "reference_available": true,
+  "Y_single_reference": NaN,
+  "Y_tensor_reference": NaN,
+  "Y_single_error": NaN,
+  "Y_tensor_error": NaN,
+  "supported_cycles_reference": 0
+}

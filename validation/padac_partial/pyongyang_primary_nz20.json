@@ -1,0 +1,17 @@
+{
+  "city": "pyongyang",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3650,
+  "supported_cycles": 479,
+  "Y_single": 0.5479799966807705,
+  "Y_tensor": 0.554447510296409,
+  "peak_Ts_C": 73.94367032056603,
+  "solver_seconds": 1450.140999999945,
+  "reference_available": true,
+  "Y_single_reference": 0.54798167483932,
+  "Y_tensor_reference": 0.5544491703781849,
+  "Y_single_error": -1.6781585495673212e-06,
+  "Y_tensor_error": -1.6600817758227748e-06,
+  "supported_cycles_reference": 479
+}

@@ -1,0 +1,17 @@
+{
+  "city": "sacramento",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3632,
+  "supported_cycles": 1494,
+  "Y_single": 0.7303974394870999,
+  "Y_tensor": 0.7529671064355169,
+  "peak_Ts_C": 81.64992997445276,
+  "solver_seconds": 1174.984000000055,
+  "reference_available": true,
+  "Y_single_reference": 0.7303959549024368,
+  "Y_tensor_reference": 0.7529655853724655,
+  "Y_single_error": 1.4845846630917592e-06,
+  "Y_tensor_error": 1.521063051401761e-06,
+  "supported_cycles_reference": 1494
+}

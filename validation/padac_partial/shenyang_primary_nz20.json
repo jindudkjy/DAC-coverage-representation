@@ -1,0 +1,17 @@
+{
+  "city": "shenyang",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3652,
+  "supported_cycles": 1062,
+  "Y_single": 0.5475337011412602,
+  "Y_tensor": 0.5482952968658357,
+  "peak_Ts_C": 74.84528279329726,
+  "solver_seconds": 1716.375,
+  "reference_available": true,
+  "Y_single_reference": 0.5475330993965906,
+  "Y_tensor_reference": 0.5482946810221522,
+  "Y_single_error": 6.017446696482409e-07,
+  "Y_tensor_error": 6.158436834935443e-07,
+  "supported_cycles_reference": 1062
+}

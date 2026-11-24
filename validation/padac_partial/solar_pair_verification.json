@@ -1,0 +1,11 @@
+{
+  "city_results": 36,
+  "evaluable_climates": 30,
+  "eligible_pairs": 435,
+  "neither": 397,
+  "H_only": 25,
+  "Y_only": 13,
+  "both": 0,
+  "max_abs_city_Y_error": 6.294726158539987e-05,
+  "claim_13_of_435_reproduced": true
+}

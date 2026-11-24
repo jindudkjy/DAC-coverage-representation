@@ -1,0 +1,17 @@
+{
+  "city": "rome",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3632,
+  "supported_cycles": 745,
+  "Y_single": 0.7667706231147068,
+  "Y_tensor": 0.7576471494513647,
+  "peak_Ts_C": 76.45514767015558,
+  "solver_seconds": 1340.280999999959,
+  "reference_available": true,
+  "Y_single_reference": 0.766770465278291,
+  "Y_tensor_reference": 0.7576468222252204,
+  "Y_single_error": 1.5783641582611807e-07,
+  "Y_tensor_error": 3.272261442921476e-07,
+  "supported_cycles_reference": 745
+}

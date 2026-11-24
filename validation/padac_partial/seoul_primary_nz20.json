@@ -1,0 +1,17 @@
+{
+  "city": "seoul",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3652,
+  "supported_cycles": 291,
+  "Y_single": 0.4503301568322901,
+  "Y_tensor": 0.4570915322180567,
+  "peak_Ts_C": 74.66507973091069,
+  "solver_seconds": 1396.5929999999935,
+  "reference_available": true,
+  "Y_single_reference": 0.4503267555236715,
+  "Y_tensor_reference": 0.4570880594170716,
+  "Y_single_error": 3.401308618589116e-06,
+  "Y_tensor_error": 3.4728009851159314e-06,
+  "supported_cycles_reference": 291
+}

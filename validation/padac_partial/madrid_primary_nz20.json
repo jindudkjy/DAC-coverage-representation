@@ -1,0 +1,17 @@
+{
+  "city": "madrid",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3632,
+  "supported_cycles": 728,
+  "Y_single": 0.8282173143113811,
+  "Y_tensor": 0.8604229452466682,
+  "peak_Ts_C": 80.09691154390248,
+  "solver_seconds": 1100.7029999999795,
+  "reference_available": true,
+  "Y_single_reference": 0.82821814643242,
+  "Y_tensor_reference": 0.8604237448188568,
+  "Y_single_error": -8.321210388517741e-07,
+  "Y_tensor_error": -7.995721885700746e-07,
+  "supported_cycles_reference": 728
+}

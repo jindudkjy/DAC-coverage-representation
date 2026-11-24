@@ -1,0 +1,17 @@
+{
+  "city": "paris",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3632,
+  "supported_cycles": 44,
+  "Y_single": 0.885516990282867,
+  "Y_tensor": 0.9374082539564104,
+  "peak_Ts_C": 72.3748067320095,
+  "solver_seconds": 1399.015000000014,
+  "reference_available": true,
+  "Y_single_reference": 0.8855123869321713,
+  "Y_tensor_reference": 0.9374032711777872,
+  "Y_single_error": 4.603350695742137e-06,
+  "Y_tensor_error": 4.982778623152662e-06,
+  "supported_cycles_reference": 44
+}

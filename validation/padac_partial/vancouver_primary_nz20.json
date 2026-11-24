@@ -1,0 +1,17 @@
+{
+  "city": "vancouver",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3632,
+  "supported_cycles": 74,
+  "Y_single": 0.28371281395534764,
+  "Y_tensor": 0.29190375847603883,
+  "peak_Ts_C": 75.4984510661229,
+  "solver_seconds": 899.438000000082,
+  "reference_available": true,
+  "Y_single_reference": 0.2837125666647143,
+  "Y_tensor_reference": 0.2919035110816484,
+  "Y_single_error": 2.472906333594871e-07,
+  "Y_tensor_error": 2.473943904179876e-07,
+  "supported_cycles_reference": 74
+}

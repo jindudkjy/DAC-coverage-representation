@@ -1,0 +1,17 @@
+{
+  "city": "minneapolis",
+  "nz": 20,
+  "hours": 87672,
+  "cycles": 3633,
+  "supported_cycles": 198,
+  "Y_single": 0.6317021654007284,
+  "Y_tensor": 0.6467987220994004,
+  "peak_Ts_C": 73.45433893981257,
+  "solver_seconds": 1073.484999999986,
+  "reference_available": true,
+  "Y_single_reference": 0.6317007982850581,
+  "Y_tensor_reference": 0.6467971699874185,
+  "Y_single_error": 1.3671156703365384e-06,
+  "Y_tensor_error": 1.5521119818284745e-06,
+  "supported_cycles_reference": 198
+}
