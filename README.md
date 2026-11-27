@@ -194,18 +194,18 @@ both SHA-256 and every RGBA pixel to match:
 
 ```bash
 python scripts/extract_final_artwork.py \
-  --manuscript Manuscript_Coverage_Representation_DAC_submission_20261123j.docx \
-  --supporting-information Supporting_Information_Coverage_Representation_DAC_final_20261123g.docx \
+  --manuscript Manuscript_20261128_revised_v6.docx \
+  --supporting-information Supporting_Information_20261128_revised_v3.docx \
   --output-dir results/final_artwork
 
 python scripts/verify_artwork.py \
   --candidate-dir results/final_artwork
 ```
 
-For the latest submission files, all nine tracked artwork PNG streams match the canonical
-reference files by SHA-256. Figure 3 was refreshed from the latest manuscript DOCX; the
-other eight streams were unchanged. Byte identity also implies zero differing decoded
-pixels for the stored PNG artwork.
+For the latest submission files, all 14 main-text and Supporting Information artwork PNG
+streams match the canonical reference files by SHA-256. The high-resolution streams for
+Figures 3-5 and SI Figure S2 were restored and automatic Word image compression was
+disabled. Byte identity also implies zero differing decoded pixels for every stored PNG.
 
 This is an artwork-preservation check, not a substitute for scientific recalculation.
 The independent calculation path remains the table and numerical-figure workflow above.

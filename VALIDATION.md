@@ -1,8 +1,8 @@
 # Numerical validation status
 
-Validation date: 2026-11-25
+Validation date: 2026-11-28
 
-Scope: numerical reproducibility of the latest submission manuscript `20261123j` and Supporting Information `20261123g`. This validation does not establish new experimental validity for the physical models.
+Scope: numerical reproducibility of Jin-young Kang's manuscript and Supporting Information titled *Equilibrium Data Coverage and Representation in Weather-Resolved Direct Air Capture Analysis*. This validation does not establish new experimental validity for the physical models.
 
 ## Overall conclusion
 
@@ -16,7 +16,7 @@ The full publication-scale PADAC thermal integration is complete for all 36 citi
 | --- | ---: | ---: | --- |
 | Equilibrium H panel | 2,826 rows | 4.55e-13 for H; 1.46e-11 for H_RH | pass |
 | H/N and partial-Kendall analysis | 108 material panels; 12 Table S6 medians | exact to displayed precision | pass |
-| H/N random reassignment | 108 panels x 3,000 seeded reassignments | main-text 10.14%, 12.91%, 8 and 10 reproduced | pass |
+| H/N random reassignment | 108 panels × 3,000 seeded reassignments | all SI Table S6 random-reassignment medians and counts reproduced | pass |
 | Figure 3 panel summary | 12 rows | 3.44e-13 | pass |
 | Native-hour boundary extension | 72 rows | 3.55e-15 percentage points | pass |
 | IRA hourly LDF Y | 140 frozen-cohort rows | 2.27e-13 mmol g-1 | pass |
@@ -49,9 +49,9 @@ The random-reassignment test uses one generator, `numpy.random.default_rng(0)`, 
 - Main numerical figure reconstructions: Figures 2-7 generated and visually inspected; Figure 3b is recomputed from the complete 2,826-row H/N panel.
 - SI numerical figure reconstructions: current Figures S3 and S5-S7 generated from the retained sources.
 - Figure 1 is conceptual artwork and is not treated as a computed output.
-- Latest submission artwork audit: Figures 2-7 and SI Figures S5-S7 were extracted from the embedded DOCX media streams.
-- Figure 3 was refreshed from manuscript `20261123j`; the other eight tracked PNG streams were unchanged.
-- Exact artwork regression: 9/9 latest-submission PNG streams match the canonical references by SHA-256. Byte identity implies zero differing decoded pixels.
+- Latest submission artwork audit: Figures 1-7 and SI Figures S1-S7 were extracted from the embedded DOCX media streams.
+- The high-resolution source streams for Figures 3-5 and SI Figure S2 were restored without changing their displayed size; automatic Word image compression is disabled in both submission documents.
+- Exact artwork regression: 14/14 latest-submission PNG streams match the canonical references by SHA-256. Byte identity implies zero differing decoded pixels.
 - Numerical replots remain separate from the exact-artwork regression because extraction verifies submission fidelity while recalculation verifies scientific values.
 
 ## PADAC publication-scale rerun

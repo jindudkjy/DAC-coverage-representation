@@ -13,12 +13,17 @@ from PIL import Image
 
 
 FILENAMES = [
+    "Fig1_final.png",
     "Fig2_final.png",
     "Fig3_final.png",
     "Fig4_final.png",
     "Fig5_final.png",
     "Fig6_final.png",
     "Fig7_final.png",
+    "FigS1_final.png",
+    "FigS2_final.png",
+    "FigS3_final.png",
+    "FigS4_final.png",
     "FigS5_final.png",
     "FigS6_final.png",
     "FigS7_final.png",

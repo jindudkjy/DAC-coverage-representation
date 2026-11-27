@@ -81,14 +81,16 @@ def main() -> None:
     parser.add_argument("--output-dir", type=Path, default=Path("results/final_artwork"))
     args = parser.parse_args()
 
-    requested_main = {str(number) for number in range(2, 8)}
-    requested_si = {f"S{number}" for number in range(5, 8)}
+    requested_main = {str(number) for number in range(1, 8)}
+    requested_si = {f"S{number}" for number in range(1, 8)}
     figures = extract_figures(args.manuscript, requested_main)
     figures.update(extract_figures(args.supporting_information, requested_si))
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
     rows = ["figure,output,source_document,source_media,bytes,sha256"]
-    for label in ["2", "3", "4", "5", "6", "7", "S5", "S6", "S7"]:
+    labels = [str(number) for number in range(1, 8)]
+    labels.extend(f"S{number}" for number in range(1, 8))
+    for label in labels:
         payload, media_path = figures[label]
         output = args.output_dir / f"Fig{label}_final.png"
         output.write_bytes(payload)
