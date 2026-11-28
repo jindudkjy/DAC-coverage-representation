@@ -228,7 +228,7 @@ The independent calculation path remains the table and numerical-figure workflow
 ## Test and verify
 
 ```bash
-pytest
+python -m pytest
 python scripts/verify_frozen.py \
   results/tables/MAIN_climate_H_scores_recomputed.csv \
   data/frozen/MAIN_climate_H_scores.csv \
