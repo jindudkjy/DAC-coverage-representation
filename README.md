@@ -210,6 +210,21 @@ disabled. Byte identity also implies zero differing decoded pixels for every sto
 This is an artwork-preservation check, not a substitute for scientific recalculation.
 The independent calculation path remains the table and numerical-figure workflow above.
 
+### Reproduce the measurement-to-CO2-release flowchart exactly
+
+The approved flowchart is retained as canonical raster artwork. The Python command below
+copies its PNG byte stream without re-rendering and verifies both SHA-256 and every decoded
+RGB pixel. This is the only platform-independent way to guarantee zero pixel differences;
+re-drawing text and lines would depend on the installed font and rasterizer.
+
+```bash
+python scripts/reproduce_flowchart_exact.py \
+  --output results/measurement_to_co2_release_flowchart.png
+```
+
+Expected output: 1206 x 1305 pixels and SHA-256
+`2b10729abc57dd8e002b55399e3ae2b9e2416e74aa2cdd4f95c02e74db07664f`.
+
 ## Test and verify
 
 ```bash

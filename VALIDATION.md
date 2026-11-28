@@ -45,7 +45,7 @@ The random-reassignment test uses one generator, `numpy.random.default_rng(0)`, 
 
 ## Code and figure execution
 
-- Unit tests: 22 passed, including raw temporal alignment, seeded reassignment, H/N and partial-Kendall tests.
+- Unit tests: 23 passed, including raw temporal alignment, seeded reassignment, H/N, partial-Kendall, and exact flowchart reproduction tests.
 - Main numerical figure reconstructions: Figures 2-7 generated and visually inspected; Figure 3b is recomputed from the complete 2,826-row H/N panel.
 - SI numerical figure reconstructions: current Figures S3 and S5-S7 generated from the retained sources.
 - Figure 1 is conceptual artwork and is not treated as a computed output.
