@@ -8,6 +8,7 @@ doi: 10.5281/zenodo.24617626
 authors:
   - family-names: Kang
     given-names: Jin-young
+    orcid: "https://orcid.org/0009-0001-8341-2769"
     email: jindud@snu.ac.kr
     affiliation: Seoul National University
 repository-code: "https://github.com/jindudkjy/DAC-coverage-representation"
