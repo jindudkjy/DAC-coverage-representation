@@ -2,12 +2,16 @@ cff-version: 1.2.0
 message: "If you use this software or its bundled reproduction data, please cite the repository and the associated article."
 title: "Equilibrium Data Coverage and Representation in Weather-Resolved Direct Air Capture Analysis"
 type: software
+version: 1.0.0
+date-released: 2026-11-28
+doi: 10.5281/zenodo.24617626
 authors:
   - family-names: Kang
     given-names: Jin-young
     email: jindud@snu.ac.kr
     affiliation: Seoul National University
 repository-code: "https://github.com/jindudkjy/DAC-coverage-representation"
+url: "https://doi.org/10.5281/zenodo.24617626"
 license: MIT
 keywords:
   - direct air capture

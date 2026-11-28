@@ -2,7 +2,7 @@
 
 ## Source assets
 
-- Final submission manuscript `Manuscript_20261128_revised_v6.docx`, Supporting Information `Supporting_Information_20261128_revised_v3.docx`, cover letter `Cover_Letter_Coverage_Representation_DAC_submission_20261123l.docx`, and highlights `Highlights_Coverage_Representation_DAC_submission_20261123d.docx`.
+- Final submission manuscript and Supporting Information for Jin-young Kang's *Equilibrium Data Coverage and Representation in Weather-Resolved Direct Air Capture Analysis*.
 - Google Drive analysis-code archive `02_analysis_code`.
 - Google Drive reproduction-code and output archive `08_reproduction_code_and_outputs`.
 - Frozen reproducibility package dated 2026-11-19.
@@ -21,13 +21,15 @@ Version 1.0 provides the self-contained coverage-centered execution path:
 - explicit distinction between source-data replots and final artwork;
 - bundled canonical hourly temperature/RH and solar/wind forcing;
 - portable, restartable PADAC city and all-city runners;
-- exact-artwork hashes from the latest submission files; conceptual Figure 1 is excluded, and all 13/13 tracked PNG streams match the latest DOCX media by SHA-256.
+- exact-artwork hashes from the submitted files; all 14/14 main-text and Supporting Information PNG streams, including the Python-generated conceptual Figure 1, match the submitted DOCX media by SHA-256.
 
 ## Regeneration levels
 
 - **Independent raw-input calculation:** coverage extensions, weather-state summaries, equilibrium H, IRA hourly LDF Y, ImCOF whole-range H, and fixed-80 degC ImCOF Y.
 - **Validated intermediate regression:** pairwise H/Y classification from climate-level scores and some sensitivity summaries.
-- **Publication-scale calculation in progress:** the complete 10-year PADAC thermal ODE panel is restartable by city; the exact packaged checkpoint and limitations are reported in `validation/padac_partial/PADAC_STATUS.md`.
+- **Completed publication-scale calculation:** the complete 10-year, 36-city PADAC thermal ODE panel reproduces 13 Y-only reversals among 435 eligible pairs and zero joint H/Y reversals; evidence is retained under `validation/padac_partial/`.
 - **Frozen stochastic summaries:** selected bootstrap sensitivity repeats are retained as labeled intermediates.
 
 Every public command writes new files under `results/`; canonical input files are never overwritten.
+
+The archived v1.0.0 software release is identified by https://doi.org/10.5281/zenodo.24617626.
