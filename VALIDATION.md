@@ -45,13 +45,13 @@ The random-reassignment test uses one generator, `numpy.random.default_rng(0)`, 
 
 ## Code and figure execution
 
-- Unit tests: 23 passed, including raw temporal alignment, seeded reassignment, H/N, partial-Kendall, and exact flowchart reproduction tests.
+- Unit tests: 26 passed, including raw temporal alignment, seeded reassignment, H/N, partial-Kendall, SI source-value, and exact-flowchart tests.
 - Main numerical figure reconstructions: Figures 2-7 generated and visually inspected; Figure 3b is recomputed from the complete 2,826-row H/N panel.
-- SI numerical figure reconstructions: current Figures S3 and S5-S7 generated from the retained sources.
-- Figure 1 is conceptual artwork and is not treated as a computed output.
+- SI numerical figure reconstructions: current Figures S1-S7 have executable 600-dpi generation paths. Figure S4 point values are explicitly identified as digitized from the final SI artwork and constrained to the published Table S10 ranges; they are not represented as an independent raw-input recomputation.
+- Figure 1 is conceptual artwork. Its Python path reproduces the canonical PNG byte-for-byte and is tested separately from numerical calculations.
 - Latest submission artwork audit: Figures 1-7 and SI Figures S1-S7 were extracted from the embedded DOCX media streams.
 - The high-resolution source streams for Figures 3-5 and SI Figure S2 were restored without changing their displayed size; automatic Word image compression is disabled in both submission documents.
-- Exact artwork regression: 14/14 latest-submission PNG streams match the canonical references by SHA-256. Byte identity implies zero differing decoded pixels.
+- Exact artwork regression: 14/14 tracked latest-submission PNG streams match the canonical references by SHA-256. Byte identity implies zero differing decoded pixels.
 - Numerical replots remain separate from the exact-artwork regression because extraction verifies submission fidelity while recalculation verifies scientific values.
 
 ## PADAC publication-scale rerun

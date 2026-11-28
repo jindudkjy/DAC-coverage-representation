@@ -21,7 +21,7 @@ Version 1.0 provides the self-contained coverage-centered execution path:
 - explicit distinction between source-data replots and final artwork;
 - bundled canonical hourly temperature/RH and solar/wind forcing;
 - portable, restartable PADAC city and all-city runners;
-- exact-artwork hashes from the latest submission files; the high-resolution streams for Figures 3-5 and SI Figure S2 were restored and all 14/14 PNG streams match the latest DOCX media by SHA-256.
+- exact-artwork hashes from the latest submission files; conceptual Figure 1 is excluded, and all 13/13 tracked PNG streams match the latest DOCX media by SHA-256.
 
 ## Regeneration levels
 

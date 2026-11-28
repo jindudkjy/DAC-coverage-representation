@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Create numerical verification plots for current SI Figures S3 and S5-S7."""
+"""Create numerical verification plots for current SI Figures S1-S7."""
 
 from __future__ import annotations
 
@@ -33,9 +33,48 @@ def main() -> None:
 
     def save(label: str, figure, sources: list[str], note: str) -> None:
         filename = f"Fig{label}_numerical_reconstruction.png"
-        figure.savefig(args.output_dir / filename, dpi=200, bbox_inches="tight")
+        figure.savefig(args.output_dir / filename, dpi=600, bbox_inches="tight")
         plt.close(figure)
         manifest.append({"figure": label, "output": filename, "source_files": "; ".join(sources), "note": note})
+
+    # Current SI Figure S1: LWT-bPPI5 protocol substitution.
+    s1 = read(args.input_dir, "SI_Fig_S1_source_data.csv")
+    positions = np.arange(len(s1))
+    figure, axis = plt.subplots(figsize=(8.2, 4.2))
+    for position, left, right in zip(
+        positions, s1.pre_saturated_delta_tau, s1.dry_start_delta_tau
+    ):
+        axis.plot([left, right], [position, position], color="0.7", lw=1)
+    axis.scatter(s1.pre_saturated_delta_tau, positions, label="Pre-saturated humid series")
+    axis.scatter(s1.dry_start_delta_tau, positions, marker="s", label="Dry-start co-adsorption substitution")
+    axis.axvline(0, color="black", lw=0.8)
+    axis.set_yticks(positions, s1.label)
+    axis.invert_yaxis()
+    axis.set(xlabel="Change in Kendall tau (Delta tau)", title="LWT-bPPI5 protocol substitution")
+    axis.legend(frameon=False)
+    figure.tight_layout()
+    save("S1", figure, ["SI_Fig_S1_source_data.csv"], "Published SI Table S7 values.")
+
+    # Current SI Figure S2: bounded temperature-specific capacity perturbations.
+    s2 = read(args.input_dir, "SI_Fig_S2_source_data.csv")
+    positions = np.arange(len(s2))
+    width = 0.29
+    figure, axis = plt.subplots(figsize=(8.2, 4.2))
+    axis.bar(positions - width / 2, s2.median_of_median_delta_tau, width, label="Median of median Delta tau")
+    axis.bar(positions + width / 2, s2.worst_median_delta_tau, width, label="Worst median Delta tau")
+    axis.axhline(0, color="0.25", lw=0.8)
+    axis.set_xticks(positions, [f"+/- {value:g}%" for value in s2.perturbation_magnitude_pct])
+    axis.set(ylabel="Delta tau", title="Temperature-specific capacity perturbations")
+    axis.text(
+        0.02,
+        0.95,
+        f"All six temporal treatments positive in {s2.fraction_all_six_positive_pct.iloc[0]:.1f}% of trials at each bound",
+        transform=axis.transAxes,
+        va="top",
+    )
+    axis.legend(frameon=False)
+    figure.tight_layout()
+    save("S2", figure, ["SI_Fig_S2_source_data.csv"], "Published SI Table S8 values.")
 
     # Current SI Figure S6: measured-domain boundary-extension gains.
     s6 = read(args.input_dir, "SI_Fig_S6_source_data.csv")
@@ -82,6 +121,24 @@ def main() -> None:
     figure.suptitle("SI Figure S3 numerical reconstruction")
     figure.tight_layout()
     save("S3", figure, ["SI_added_temperature_held_interior.csv", "Mg_LWT_analogue_delta_tau_bootstrap.csv"], "LWT observed values and Mg paired-location percentile ranges.")
+
+    # Current SI Figure S4: structured capacity-bias sensitivity.
+    s4 = read(args.input_dir, "SI_Fig_S4_source_data.csv").sort_values("structured_capacity_bias")
+    figure, axes = plt.subplots(1, 2, figsize=(10.5, 4.2))
+    axes[0].plot(s4.structured_capacity_bias, s4.mg_median_C_rel, "o-", label="MgAl-PEI")
+    axes[0].plot(s4.structured_capacity_bias, s4.ira_median_C_rel, "s-", label="IRA-900-C")
+    axes[0].set(title="Correction magnitude", xlabel="Structured capacity bias", ylabel="Median C_rel")
+    axes[0].legend(frameon=False)
+    axes[1].plot(s4.structured_capacity_bias, s4.mg_reversal_fraction_pct, "o-", label="MgAl-PEI")
+    axes[1].plot(s4.structured_capacity_bias, s4.ira_reversal_fraction_pct, "s-", label="IRA-900-C")
+    axes[1].set(title="Ordinal consequence", xlabel="Structured capacity bias", ylabel="Reversal fraction (%)")
+    figure.tight_layout()
+    save(
+        "S4",
+        figure,
+        ["SI_Fig_S4_source_data.csv"],
+        "Point values digitized from final SI artwork and constrained to the published SI Table S10 ranges.",
+    )
 
     # Current SI Figure S5: continuous-state kinetic sensitivity for IRA-900-C.
     kinetic = read(args.input_dir, "SI_kinetic_rank_summary.csv")

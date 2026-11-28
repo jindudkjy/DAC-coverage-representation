@@ -1,0 +1,7 @@
+temporal_mode,label,pre_saturated_delta_tau,dry_start_delta_tau,positive_after_substitution
+subsample_1h,1 h,0.0230,0.0322,yes
+subsample_3h,3 h,0.0184,0.0414,yes
+subsample_6h,6 h,0.0276,0.0368,yes
+subsample_24h,24 h,0.0476,0.0370,yes
+average_6h,6 h avg,0.0138,0.0276,yes
+average_24h,24 h avg,0.0296,0.0542,yes

@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software or its bundled reproduction data, please cite the repository and the associated article."
-title: "Equilibrium Data Coverage and Representation in Weather-Resolved DAC Analysis"
+title: "Equilibrium Data Coverage and Representation in Weather-Resolved Direct Air Capture Analysis"
 type: software
 authors:
   - family-names: Kang
@@ -9,8 +9,6 @@ authors:
     affiliation: Seoul National University
 repository-code: "https://github.com/jindudkjy/DAC-coverage-representation"
 license: MIT
-date-released: 2026-11-28
-version: 1.0.0
 keywords:
   - direct air capture
   - adsorption equilibrium

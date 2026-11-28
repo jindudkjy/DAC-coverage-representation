@@ -22,3 +22,6 @@ Mg_LWT_analogue_held_interior_summary.csv,data/frozen/Mg_LWT_analogue_held_inter
 Mg_LWT_analogue_delta_tau_bootstrap.csv,data/frozen/Mg_LWT_analogue_delta_tau_bootstrap.csv,MgAl added-temperature resampling intervals,SI Figure S3,frozen stochastic summary
 SI_Fig_S6_source_data.csv,data/frozen/SI_Fig_S6_source_data.csv,boundary-extension plot values,SI Figure S6,independently regenerated
 SI_Fig_S7_source_data.csv,data/frozen/SI_Fig_S7_source_data.csv,IRA support pair values,SI Figure S7,independently regenerated
+SI_Fig_S1_source_data.csv,data/frozen/SI_Fig_S1_source_data.csv,LWT protocol-substitution delta-tau values,SI Figure S1,transcribed from published SI Table S7
+SI_Fig_S2_source_data.csv,data/frozen/SI_Fig_S2_source_data.csv,LWT bounded capacity-perturbation summary,SI Figure S2,transcribed from published SI Table S8
+SI_Fig_S4_source_data.csv,data/frozen/SI_Fig_S4_source_data.csv,structured capacity-bias plot points,SI Figure S4,digitized from final artwork and constrained to SI Table S10 ranges

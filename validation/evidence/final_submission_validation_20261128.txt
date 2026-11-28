@@ -3,15 +3,15 @@ Validation date: 2026-11-28
 Numerical unit tests
 --------------------
 Command: python -m pytest -q -p no:cacheprovider
-Result: 23 passed
+Result: 26 passed
 
 Submission artwork
 ------------------
 Command: scripts/extract_final_artwork.py followed by scripts/verify_artwork.py
-Result: 14/14 PNG streams byte-identical and pixel-identical to the canonical references; 0 differing pixels in every figure.
+Result: 14/14 tracked PNG streams byte-identical and pixel-identical to the canonical references, including the exact Python-generated Figure 1.
 
 Word package integrity
 ----------------------
-Manuscript changes were limited to word/media/image3.png, image4.png, image5.png, and word/settings.xml.
+Manuscript changes were limited to word/media/image9.png (Figure 1), image3.png, image4.png, image5.png, and word/settings.xml.
 Supporting Information changes were limited to word/media/image2.png and word/settings.xml.
 In both documents, word/document.xml, document relationships, styles, and package membership are unchanged. The only settings change disables automatic image compression.

@@ -1,0 +1,3 @@
+perturbation_magnitude_pct,fraction_all_six_positive_pct,minimum_positive_modes,total_modes,worst_median_delta_tau,median_of_median_delta_tau
+5,55.6,2,6,-0.0115,0.0236
+10,55.6,0,6,-0.0253,0.0253

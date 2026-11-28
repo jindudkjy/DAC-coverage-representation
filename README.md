@@ -1,13 +1,13 @@
-# Equilibrium Data Coverage and Representation in Weather-Resolved DAC Analysis
+# Equilibrium Data Coverage and Representation in Weather-Resolved Direct Air Capture Analysis
 
-This repository is the Python-first reproduction package for the manuscript **Equilibrium Data Coverage and Representation in Weather-Resolved Direct Air Capture Analysis** and its Supporting Information (final closed version, 2026-11-23).
+This repository is the Python-first reproduction package for Jin-young Kang's manuscript **Equilibrium Data Coverage and Representation in Weather-Resolved Direct Air Capture Analysis** and its Supporting Information.
 
 The repository separates four evidence levels:
 
 1. calculations regenerated from hourly weather and equilibrium inputs;
 2. regression checks reconstructed from frozen climate-level scores;
 3. numerical source-data verification plots;
-4. byte- and pixel-identical preservation of the final closed-manuscript artwork.
+4. byte- and pixel-identical preservation of the submitted manuscript artwork.
 
 ## Main questions reproduced
 
@@ -35,11 +35,15 @@ DAC-coverage-representation/
 ├── VALIDATION.md
 ├── pyproject.toml
 ├── requirements.txt
+├── assets/
+│   └── measurement_to_co2_release_flowchart.png
 ├── config/data_manifest.csv
 ├── data/
 │   ├── README.md
+│   ├── archives/
 │   ├── reference/
 │   ├── equilibrium/
+│   ├── padac/
 │   ├── weather/
 │   └── frozen/
 ├── src/dac_equilibrium/
@@ -47,12 +51,23 @@ DAC-coverage-representation/
 │   ├── reproduce_tables.py
 │   ├── n_controlled_ordering.py
 │   ├── reproduce_figures.py
+│   ├── reproduce_si_figures.py
+│   ├── reproduce_padac_all.py
+│   ├── reproduce_padac_city.py
+│   ├── verify_padac_solar.py
+│   ├── reproduce_flowchart_exact.py
 │   ├── extract_final_artwork.py
 │   ├── verify_artwork.py
 │   └── verify_frozen.py
 ├── notebooks/reproduce_manuscript.ipynb
 ├── tests/
 └── validation/
+    ├── evidence/
+    ├── figures/
+    ├── si_figures/
+    ├── tables/
+    ├── padac_partial/
+    └── reference_artwork/
 ```
 
 ## Installation
@@ -161,7 +176,7 @@ python scripts/reproduce_si_figures.py \
   --output-dir results/si_figures
 ```
 
-These commands create numerical verification plots for final manuscript Figures 2-7 and current SI Figures S3 and S5-S7. Figure 1 is a conceptual analysis diagram and is not a numerical output. Numerical plots are deliberately kept separate from the final submission artwork.
+These commands create numerical verification plots for final manuscript Figures 2-7 and SI Figures S1-S7. Figure 1 is conceptual artwork and is reproduced through the exact-artwork path below. Numerical plots are deliberately kept separate from the final submission artwork. SI Figures S1 and S2 are reconstructed from the published SI Table S7-S8 values. SI Figure S4 uses plot-point values recovered from the final artwork and constrained to the published SI Table S10 ranges; its manifest records this provenance explicitly.
 
 ## Reproduce the PADAC solar-regeneration calculation
 
@@ -188,14 +203,14 @@ python scripts/verify_padac_solar.py \
 
 ## Preserve and verify the final artwork exactly
 
-The canonical PNG byte streams embedded in the final closed DOCX files are retained in
+The canonical PNG byte streams embedded in the submitted DOCX files are retained in
 `validation/reference_artwork`. Re-extract them from the submitted documents and require
 both SHA-256 and every RGBA pixel to match:
 
 ```bash
 python scripts/extract_final_artwork.py \
-  --manuscript Manuscript_20261128_revised_v6.docx \
-  --supporting-information Supporting_Information_20261128_revised_v3.docx \
+  --manuscript Manuscript.docx \
+  --supporting-information Supporting_Information.docx \
   --output-dir results/final_artwork
 
 python scripts/verify_artwork.py \
@@ -210,21 +225,6 @@ disabled. Byte identity also implies zero differing decoded pixels for every sto
 This is an artwork-preservation check, not a substitute for scientific recalculation.
 The independent calculation path remains the table and numerical-figure workflow above.
 
-### Reproduce the measurement-to-CO2-release flowchart exactly
-
-The approved flowchart is retained as canonical raster artwork. The Python command below
-copies its PNG byte stream without re-rendering and verifies both SHA-256 and every decoded
-RGB pixel. This is the only platform-independent way to guarantee zero pixel differences;
-re-drawing text and lines would depend on the installed font and rasterizer.
-
-```bash
-python scripts/reproduce_flowchart_exact.py \
-  --output results/measurement_to_co2_release_flowchart.png
-```
-
-Expected output: 1206 x 1305 pixels and SHA-256
-`2b10729abc57dd8e002b55399e3ae2b9e2416e74aa2cdd4f95c02e74db07664f`.
-
 ## Test and verify
 
 ```bash
@@ -235,6 +235,9 @@ python scripts/verify_frozen.py \
   --keys material branch temporal_mode climate_class city \
   --report results/verification/MAIN_climate_H_scores_regression.csv
 ```
+
+The same test suite runs automatically on pushes and pull requests through
+`.github/workflows/tests.yml`.
 
 Synthetic unit tests cover interpolation support, H definitions, pairwise reversal classes, LDF propagation, material-specific release endpoints, ice-saturation RH limits, and boundary-state counting. Full-data regression results and tolerances are summarized in `VALIDATION.md`.
 
